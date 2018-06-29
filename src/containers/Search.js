@@ -12,10 +12,26 @@ class Search extends Component {
     }
   }
 
+  handleItemPurchase = (addToCartUrl) => {
+    // redirect to CART
+  }
+
+  handleRequestClick= (item) => {
+    debugger
+    // persist Post.create to backend with fetch
+    fetch("http://localhost:3000/api/v1/createrequest")
+  }
+
   renderItems = () => {
     return this.state.itemList.map(item => {
+      console.log(this)
       return (
-        <Item info={item} />
+        <Item
+          info={item}
+          key={item.itemId}
+          handleItemPurchase={this.handleItemPurchase}
+          handleRequestClick={this.handleRequestClick}
+        />
       )
     })
   }

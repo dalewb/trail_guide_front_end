@@ -5,13 +5,15 @@ class Item extends Component {
   render() {
     return (
       <div>
+        <img src={this.props.info.mediumImage} alt='' ></img>
         <p>Item: {this.props.info.name}</p>
-        <p>Normal Price: {this.props.info.msrp}</p>
-        <p>Sale Price: {this.props.info.salePrice}</p>
+        <p>Price: ${this.props.info.salePrice}</p>
+        <button onClick={this.props.handleItemPurchase}>Buy Item</button>
+        <button onClick={() => this.props.handleRequestClick(this.props.info)}>Create a Request</button>
       </div>
     )
   }
-  
+
 }
 
 export default Item;
