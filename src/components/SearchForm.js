@@ -9,7 +9,7 @@ class SearchForm extends Component {
           Search:
           <input type="text" name="search" onChange={this.props.handleSearchChange}/>
         </label>
-        <input type="submit" value="Submit"/>
+        <button type="submit" value="Submit">Submit</button>
       </form>
     )
   }
