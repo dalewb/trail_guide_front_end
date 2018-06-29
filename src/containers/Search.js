@@ -9,6 +9,7 @@ class Search extends Component {
     this.state = {
       searchTerm: '',
       itemList: [],
+      requestItem: null,
     }
   }
 
@@ -16,10 +17,77 @@ class Search extends Component {
     // redirect to CART
   }
 
-  handleRequestClick= (item) => {
+  createRequest = (item) => {
+    // need to pass good id in order to create a new request, but the handleRequestSubmit has the priority and
+    // date needed.  Maybe set them in the state and then set everything to null after the creation?
+  }
+
+  createNewItem = (item) => {
+    fetch("http://localhost:3000/api/v1/createitem", {
+  		method: "POST",
+  		headers: {
+  			"Content-Type": "application/json"
+  		},
+  		body: JSON.stringify({
+        type: "Good",
+  			name: this.state.requestItem.name,
+        price: this.state.requestItem.salePrice,
+        img_url: this.state.requestItem.mediumImage,
+  		})
+  	})
+  		.then(res => res.json())
+  		.then(json => this.createRequest(json))
+    }
+
+  handleRequestSubmit = (e) => {
+    e.preventDefault()
     debugger
+    let date_needed = e.target.date_needed.value
+    let priority = e.target.priority.value
+
+    // fetch to back end to persist post request
+    // reset requestItem to null
+    fetch("http://localhost:3000/api/v1/createrequest", {
+  		method: "POST",
+  		headers: {
+  			"Content-Type": "application/json"
+  		},
+  		body: JSON.stringify({
+
+  		})
+  	})
+  		.then(res => res.json())
+  		.then(json => this.setState({
+        itemList: json.items
+      }))
+
+    this.setState({
+      requestItem: null
+    })
+  }
+
+  renderRequestForm = () => {
+    return (
+      <form onSubmit={this.handleRequestSubmit}>
+        <label>
+          Date Needed:
+          <input type="text" id="date_needed"></input>
+        </label>
+        <label>
+          Priority Level:
+          <input type="text" id="priority"></input>
+        </label>
+        <input type="submit" value="Submit"></input>
+      </form>
+    )
+  }
+
+  handleRequestClick= (item) => {
     // persist Post.create to backend with fetch
-    fetch("http://localhost:3000/api/v1/createrequest")
+
+    this.setState({
+      requestItem: item
+    })
   }
 
   renderItems = () => {
@@ -62,6 +130,7 @@ class Search extends Component {
   render() {
     return (
       <div>
+        {this.state.requestItem ? this.renderRequestForm() : null}
         <SearchForm
           handleSearchChange={this.handleSearchChange}
           handleSearchSubmit={this.handleSearchSubmit}
