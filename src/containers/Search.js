@@ -10,26 +10,47 @@ class Search extends Component {
       searchTerm: '',
       itemList: [],
       requestItem: null,
+      requestDate: '',
+      requestPriority: '',
     }
   }
 
   handleItemPurchase = (addToCartUrl) => {
-    // redirect to CART
+    // redirect to CART?
   }
 
   createRequest = (item) => {
-    // need to pass good id in order to create a new request, but the handleRequestSubmit has the priority and
-    // date needed.  Maybe set them in the state and then set everything to null after the creation?
-  }
-
-  createNewItem = (item) => {
-    fetch("http://localhost:3000/api/v1/createitem", {
+    debugger
+    const currentDate = new Date()
+    fetch("http://localhost:3000/api/v1/posts", {
   		method: "POST",
   		headers: {
   			"Content-Type": "application/json"
   		},
   		body: JSON.stringify({
-        type: "Good",
+        user_id: 1,
+        commodity_id: item.data.id,
+        date_needed: this.state.requestDate,
+        date_posted: `${currentDate}`,
+        priority: this.state.requestPriority
+  		})
+  	})
+  		.then(res => res.json())
+  		.then(json => {console.log("Item Requested!")})
+
+    this.setState({
+      requestItem: null
+    })
+  }
+
+  createNewItem = () => {
+    fetch("http://localhost:3000/api/v1/commodities", {
+  		method: "POST",
+  		headers: {
+  			"Content-Type": "application/json"
+  		},
+  		body: JSON.stringify({
+        commodity_type: "Good",
   			name: this.state.requestItem.name,
         price: this.state.requestItem.salePrice,
         img_url: this.state.requestItem.mediumImage,
@@ -41,29 +62,10 @@ class Search extends Component {
 
   handleRequestSubmit = (e) => {
     e.preventDefault()
-    debugger
-    let date_needed = e.target.date_needed.value
-    let priority = e.target.priority.value
-
-    // fetch to back end to persist post request
-    // reset requestItem to null
-    fetch("http://localhost:3000/api/v1/createrequest", {
-  		method: "POST",
-  		headers: {
-  			"Content-Type": "application/json"
-  		},
-  		body: JSON.stringify({
-
-  		})
-  	})
-  		.then(res => res.json())
-  		.then(json => this.setState({
-        itemList: json.items
-      }))
-
     this.setState({
-      requestItem: null
-    })
+      requestDate: e.target.date_needed.value,
+      requestPriority: e.target.priority.value,
+    }, () => {this.createNewItem()})
   }
 
   renderRequestForm = () => {
@@ -83,8 +85,6 @@ class Search extends Component {
   }
 
   handleRequestClick= (item) => {
-    // persist Post.create to backend with fetch
-
     this.setState({
       requestItem: item
     })
@@ -92,7 +92,6 @@ class Search extends Component {
 
   renderItems = () => {
     return this.state.itemList.map(item => {
-      console.log(this)
       return (
         <Item
           info={item}
@@ -107,12 +106,12 @@ class Search extends Component {
   handleSearchChange = (e) => {
     this.setState({
       searchTerm: e.target.value
-    }, () => {console.log(this.state)})
+    })
   }
 
   handleSearchSubmit = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3000/api/v1/commodities", {
+    fetch("http://localhost:3000/api/v1/search", {
   		method: "POST",
   		headers: {
   			"Content-Type": "application/json"
