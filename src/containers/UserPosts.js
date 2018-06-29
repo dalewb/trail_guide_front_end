@@ -1,4 +1,4 @@
-import React { Component }, from 'react';
+import React, { Component } from 'react';
 import Post from '../components/Post'
 
 class UserPosts extends Component {
@@ -10,10 +10,18 @@ class UserPosts extends Component {
     }
   }
 
-  
+  componentDidMount() {
+    // need user id instead of 1, will come from auth and sessions?
+    fetch(`http://localhost:3000/api/v1/posts/`)
+      .then(res => res.json())
+      .then(json => {this.setState({
+        posts: json.data
+      }, () => {console.log(this.state)})})
+  }
 
-  renderUserPosts = () => {
-    this.props.userPosts.map(post => {
+  renderUserPosts = (posts) => {
+
+    return this.state.posts.map(post => {
       return (
         <Post info={post}/>
       )
@@ -21,7 +29,9 @@ class UserPosts extends Component {
   }
 
   render() {
-
+    return (
+      this.state.posts.length > 0 ? this.renderUserPosts() : null
+    )
   }
 
 }

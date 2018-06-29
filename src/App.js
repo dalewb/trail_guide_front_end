@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Search from './containers/Search';
+import UserPosts from './containers/UserPosts';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         </header>
         <div>
           <Search />
+          <UserPosts />
         </div>
       </div>
     );
