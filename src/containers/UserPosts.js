@@ -19,11 +19,10 @@ class UserPosts extends Component {
       }, () => {console.log(this.state)})})
   }
 
-  renderUserPosts = (posts) => {
-
+  renderUserPosts = () => {
     return this.state.posts.map(post => {
       return (
-        <Post info={post}/>
+        <Post info={post} key={post.id}/>
       )
     })
   }
