@@ -131,7 +131,7 @@ class Search extends Component {
           handleSearchChange={this.handleSearchChange}
           handleSearchSubmit={this.handleSearchSubmit}
         />
-      {this.state.itemList.length > 0 ? this.renderItems() : null}
+        {this.state.itemList.length > 0 ? this.renderItems() : null}
     </div>
     )
   }
