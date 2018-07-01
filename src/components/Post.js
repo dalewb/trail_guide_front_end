@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import Card from '../material-kit-react-v1.1.0/src/components/Card/Card'
 
 class Post extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class Post extends Component {
       <div>
         <p>Post Date: {this.props.info.date_posted}</p>
         <p>Item: {this.state.commodity.name}</p>
+        <button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</button>
       </div>
     )
   }
@@ -28,7 +30,9 @@ class Post extends Component {
 
   render() {
     return (
-      this.state.commodity ? this.renderPost() : null
+      <div>
+        {this.state.commodity ? this.renderPost() : null}
+      </div>
     )
   }
 

@@ -35,11 +35,9 @@ class Search extends Component {
   		})
   	})
   		.then(res => res.json())
-  		.then(json => {console.log("Item Requested!")})
-
-    this.setState({
-      requestItem: null
-    })
+  		.then(json => {  this.setState({
+          requestItem: null
+        })})
   }
 
   createNewItem = () => {
