@@ -20,7 +20,6 @@ class Search extends Component {
   }
 
   createRequest = (item) => {
-    debugger
     const currentDate = new Date()
     fetch("http://localhost:3000/api/v1/posts", {
   		method: "POST",
