@@ -19,10 +19,15 @@ class RegistrationForm extends Component {
     }, () => {console.log(this.state)})
   }
 
+  handleRegistrationSubmit = (e) => {
+    e.preventDefault()
+    console.log("Submitted.");
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleRegistrationSubmit}><br />
+        <form onSubmit={this.handleRegistrationSubmit}><br />
           <label>
             Username:
             <input type="text" name="username" onChange={this.handleChange}/>
