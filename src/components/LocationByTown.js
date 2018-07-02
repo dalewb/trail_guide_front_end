@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 class LocationByTown extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
       city: '',
@@ -17,7 +17,7 @@ class LocationByTown extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    }, () => console.log(this.state))
+    })
   }
 
   handleSubmit = (e) => {
@@ -32,7 +32,7 @@ class LocationByTown extends Component {
       },
     })
       .then(res => res.json())
-      .then(json => {this.props.addToLocations()})
+      .then(json => {this.props.addToLocations(json.places)})
   }
 
   render() {

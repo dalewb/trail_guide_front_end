@@ -15,7 +15,8 @@ class UserPosts extends Component {
       .then(res => res.json())
       .then(json => {this.setState({
         posts: json.data
-      }, () => {console.log(this.state)})})
+      })
+    })
   }
 
   componentDidMount() {
