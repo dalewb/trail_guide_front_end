@@ -5,6 +5,7 @@ import UserPosts from './containers/UserPosts';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import Map from './components/Map'
+import LocationByTown from './components/LocationByTown'
 
 class App extends Component {
   render() {
@@ -20,6 +21,7 @@ class App extends Component {
           <UserPosts />
           <Search />
           <RegistrationForm />
+          <LocationByTown />
         </div>
       </div>
     );
