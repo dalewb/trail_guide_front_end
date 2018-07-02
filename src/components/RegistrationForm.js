@@ -8,9 +8,31 @@ class RegistrationForm extends Component {
       username: '',
       userType: '',
       gender: '',
+      startDate: '',
       password: '',
       confirmPassword: '',
+      currentuserId: '',
     }
+  }
+
+  createUser = () => {
+    fetch('http://localhost:3000/api/v1/users/', {
+  		method: "POST",
+  		headers: {
+  			"Content-Type": "application/json"
+  		},
+  		body: JSON.stringify({
+        user_type: this.state.userType,
+        username: this.state.username,
+        gender: this.state.gender,
+        start_date: this.state.startDate,
+        priority: this.state.requestPriority
+  		})
+    })
+      .then(res => res.json())
+      .then(json => {this.setState({
+        currentUserId: 1
+      }, () => {console.log(json.data.id)})})
   }
 
   handleChange = (e) => {
@@ -21,7 +43,7 @@ class RegistrationForm extends Component {
 
   handleRegistrationSubmit = (e) => {
     e.preventDefault()
-    console.log("Submitted.");
+    this.createUser()
   }
 
   render() {
@@ -39,6 +61,10 @@ class RegistrationForm extends Component {
           <label>
             Gender
             <input type="text" name="gender" onChange={this.handleChange}/>
+          </label><br />
+          <label>
+            Start Date
+            <input type="text" name="startDate" onChange={this.handleChange}/>
           </label><br />
           <label>
             Password:
