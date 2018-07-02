@@ -4,7 +4,7 @@ import Search from './containers/Search';
 import UserPosts from './containers/UserPosts';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
-// import TestCard from './components/TestCard'
+import Map from './components/Map'
 
 class App extends Component {
   render() {
@@ -15,7 +15,7 @@ class App extends Component {
           <h1 className="App-title">Trail Angels</h1>
         </header>
         <div>
-          {/*<TestCard />*/}
+          <Map />
           <LoginForm />
           <UserPosts />
           <Search />
