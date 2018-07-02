@@ -31,8 +31,8 @@ class RegistrationForm extends Component {
     })
       .then(res => res.json())
       .then(json => {this.setState({
-        currentUserId: 1
-      }, () => {console.log(json.data.id)})})
+        currentUserId: json.data.id
+      })})
   }
 
   handleChange = (e) => {
