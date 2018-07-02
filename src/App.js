@@ -3,6 +3,7 @@ import './App.css';
 import Search from './containers/Search';
 import UserPosts from './containers/UserPosts';
 import LoginForm from './components/LoginForm';
+import RegistrationForm from './components/RegistrationForm';
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
           <LoginForm />
           <UserPosts />
           <Search />
+          <RegistrationForm />
         </div>
       </div>
     );
