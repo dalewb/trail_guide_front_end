@@ -14,6 +14,8 @@ class LocationContainer extends Component {
       time: '',
       newLocationId: '',
       myLocationForm: false,
+      toggleMyLocations: false,
+      locationButtonText: 'Show'
     }
   }
 
@@ -23,18 +25,6 @@ class LocationContainer extends Component {
     .then(json => this.setState({
       myLocations: json.data
     }, () => {console.log(this.state)}))
-  }
-
-  renderMyLocations = () => {
-    return this.state.myLocations.map(location => {
-      return (
-        <MyLocation
-          info={location}
-          key={location.id}
-          userId="1"
-        />
-      )
-    })
   }
 
   handleLocationClick = (location) => {
@@ -62,10 +52,30 @@ class LocationContainer extends Component {
     })
   }
 
+  handleDeleteLocationClick = (e) => {
+    fetch(`http://localhost:3000/api/v1/bookings/${e.id}`, {
+  		method: "DELETE",
+  		headers: {
+  			"Content-Type": "application/json"
+  		}
+  	})
+  		.then(res => res.json())
+      .then(json => this.getUserLocations)
+  }
+
   handleMyLocationsClick = () => {
-    this.setState({
-      myLocationForm: !this.state.myLocationForm,
-    })
+    if (this.state.toggleMyLocations === true) {
+      this.getUserLocations()
+      this.setState({
+        toggleMyLocations: !this.state.toggleMyLocations,
+        locationButtonText: 'Show'
+      })
+    } else {
+      this.setState({
+        toggleMyLocations: !this.state.toggleMyLocations,
+        locationButtonText: 'Hide'
+      })
+    }
   }
 
   handleMyLocationFormSubmit = (e) => {
@@ -107,6 +117,19 @@ class LocationContainer extends Component {
     })
   }
 
+  renderMyLocations = () => {
+    return this.state.myLocations.map(location => {
+      return (
+        <MyLocation
+          info={location}
+          key={location.id}
+          userId="1"
+          handleDeleteLocationClick={this.handleDeleteLocationClick}
+        />
+      )
+    })
+  }
+
   renderMyLocationForm = () => {
     return(
       <form onSubmit={this.handleMyLocationFormSubmit}>
@@ -135,9 +158,9 @@ class LocationContainer extends Component {
         <LocationByTown
           addToLocations={this.addToLocations}
         /><br />
-        <button onClick={this.handleMyLocationsClick}>See My Locations</button>
+      <button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
-        {this.state.myLocations || this.state.myLocations.length > 1 ? this.renderMyLocations() : null}
+        {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
         {this.state.locations.length > 0 ? this.renderLocations() : null}
       </div>
     )

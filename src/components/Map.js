@@ -39,6 +39,7 @@ class Map extends Component {
   //     console.log("Geolocation API isn't supported.")
   // }
 
+
   static defaultProps = {
     center: {
       lat: 40.7051169,

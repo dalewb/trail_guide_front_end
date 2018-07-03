@@ -20,6 +20,8 @@ class Search extends Component {
   }
 
   createRequest = (item) => {
+    console.log("requestItem is initially", item);
+    console.log("------");
     const currentDate = new Date()
     fetch("http://localhost:3000/api/v1/posts", {
   		method: "POST",
@@ -28,7 +30,7 @@ class Search extends Component {
   		},
   		body: JSON.stringify({
         user_id: 1,
-        commodity_id: item.data.id,
+        commodity_id: item.id,
         date_needed: this.state.requestDate,
         date_posted: `${currentDate}`,
         priority: this.state.requestPriority
@@ -37,7 +39,7 @@ class Search extends Component {
   		.then(res => res.json())
   		.then(json => {this.setState({
           requestItem: null
-        })
+        }, () => console.log("requestItem is now", this.state.requestItem))
       })
   }
 
@@ -55,7 +57,7 @@ class Search extends Component {
   		})
   	})
   		.then(res => res.json())
-  		.then(json => this.createRequest(json))
+  		.then(json => {this.createRequest(json.data)})
     }
 
   handleRequestSubmit = (e) => {
@@ -125,14 +127,17 @@ class Search extends Component {
   }
 
   render() {
+    console.log("search rendered");
+    console.log("state is", this.state);
+    console.log("-------");
     return (
       <div>
-        {this.state.requestItem ? this.renderRequestForm() : null}
+        {this.state.requestItem !== null ? this.renderRequestForm() : null}
         <SearchForm
           handleSearchChange={this.handleSearchChange}
           handleSearchSubmit={this.handleSearchSubmit}
         />
-        {this.state.itemList.length > 0 ? this.renderItems() : null}
+      {this.state.itemList.length > 0 && this.state.requestItem === null ? this.renderItems() : null}
     </div>
     )
   }

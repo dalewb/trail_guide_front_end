@@ -72,8 +72,8 @@ function Location(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" color="primary" onClick={() => props.handleLocationClick(props.info)}>
-            Add to Your Locations
+          <Button size="small" color="primary" onClick={() => props.handleDeleteLocationClick(props.info)}>
+            Remove From Your Locations
           </Button>
         </CardActions>
       </Card>
