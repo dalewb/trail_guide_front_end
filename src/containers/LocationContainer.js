@@ -18,7 +18,7 @@ class LocationContainer extends Component {
   }
 
   getUserLocations() {
-    fetch("http://localhost:3000/api/v1/user/locations/1")
+    fetch("http://localhost:3000/api/v1/bookings/locations/1")
     .then(res => res.json())
     .then(json => this.setState({
       myLocations: json.data
@@ -27,13 +27,11 @@ class LocationContainer extends Component {
 
   renderMyLocations = () => {
     return this.state.myLocations.map(location => {
-      debugger
       return (
         <MyLocation
           info={location}
           key={location.id}
-          date={this.state.date}
-          time={this.state.time}
+          userId="1"
         />
       )
     })
@@ -50,7 +48,6 @@ class LocationContainer extends Component {
   			"Content-Type": "application/json"
   		},
   		body: JSON.stringify({
-        user_id: 1,
         name: name,
         latitude: lat,
         longitude: lon,
@@ -140,7 +137,7 @@ class LocationContainer extends Component {
         /><br />
         <button onClick={this.handleMyLocationsClick}>See My Locations</button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
-        {this.state.myLocations.length > 1 ? this.renderMyLocations() : null}
+        {this.state.myLocations || this.state.myLocations.length > 1 ? this.renderMyLocations() : null}
         {this.state.locations.length > 0 ? this.renderLocations() : null}
       </div>
     )

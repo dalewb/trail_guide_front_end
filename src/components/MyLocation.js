@@ -29,7 +29,7 @@ function Location(props) {
   if (props.info.activities) {
     desc = props.info.activities[0].description
   } else if (props.info.description) {
-    desc = props.info.description
+    desc = props.info.desc
   }
 
   const { classes } = props;
@@ -53,32 +53,29 @@ function Location(props) {
             {props.info.state}
           </Typography>
           <Typography component="p">
-            Latitude: {props.info.latitude}
+            Latitude: {props.info.lat}
           </Typography>
           <Typography component="p">
-            Longitude: {props.info.longitude}
+            Longitude: {props.info.lon}
           </Typography>
-          <Button size="small" color="primary" onClick={() => props.handleLocationClick(props.info)}>
-            Add to Your Locations
-          </Button>
           <Typography component="p">
             Description: {desc}
           </Typography>
           <Typography component="p">
-            User Id: {props.info.user_id}
+            User Id: {props.userId}
           </Typography>
           <Typography component="p">
-            Arrival Date: {props.date}
+            Arrival Date: {props.info.date}
           </Typography>
           <Typography component="p">
-            Arrival Time: {props.time}
+            Arrival Time: {props.info.time}
           </Typography>
         </CardContent>
         <CardActions>
           <Button size="small" color="primary" onClick={() => props.handleLocationClick(props.info)}>
             Add to Your Locations
           </Button>
-        </CardActions>}
+        </CardActions>
       </Card>
       </Grid>
     </Grid>
