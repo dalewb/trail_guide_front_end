@@ -9,34 +9,35 @@ class Map extends Component {
     lat: '',
   }
 
-  logPosition = (position) => {
-    this.setState({
-      lat: position.coords.latitude,
-      lon: position.coords.longitude
-    }, () => {console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude)})
-  }
-  showError = (error) => {
-      switch (error.code) {
-          case error.PERMISSION_DENIED:
-              alert("User denied the request for Geolocation.")
-              break;
-          case error.POSITION_UNAVAILABLE:
-              alert("Location information is unavailable.")
-              break;
-          case error.TIMEOUT:
-              alert("The request to get user location timed out.")
-              break;
-          case error.UNKNOWN_ERR:
-              alert("An unknown error occurred.")
-              break;
-      }
-  }
-
-  if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(logPosition)
-  } else {
-      console.log("Geolocation API isn't supported.")
-  }
+  // logPosition = (position) => {
+  //   this.setState({
+  //     lat: position.coords.latitude,
+  //     lon: position.coords.longitude
+  //   }, () => {console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude)})
+  // }
+  //
+  // showError = (error) => {
+  //     switch (error.code) {
+  //         case error.PERMISSION_DENIED:
+  //             alert("User denied the request for Geolocation.")
+  //             break;
+  //         case error.POSITION_UNAVAILABLE:
+  //             alert("Location information is unavailable.")
+  //             break;
+  //         case error.TIMEOUT:
+  //             alert("The request to get user location timed out.")
+  //             break;
+  //         case error.UNKNOWN_ERR:
+  //             alert("An unknown error occurred.")
+  //             break;
+  //     }
+  // }
+  //
+  // if (navigator.geolocationllll) {
+  //     navigator.geolocation.getCurrentPosition(logPosition)
+  // } else {
+  //     console.log("Geolocation API isn't supported.")
+  // }
 
   static defaultProps = {
     center: {

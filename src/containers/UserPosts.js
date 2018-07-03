@@ -20,7 +20,6 @@ class UserPosts extends Component {
   }
 
   componentDidMount() {
-    // need user id instead of 1, will come from auth and sessions?
     this.getPosts()
   }
 
@@ -34,7 +33,10 @@ class UserPosts extends Component {
 
   handleDeletePost = (deleteId) => {
     fetch(`http://localhost:3000/api/v1/posts/${deleteId}`, {
-      method: 'delete'
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json"
+      }
     })
       .then(res => res.json())
       .then(data => {this.getPosts()})

@@ -8,18 +8,34 @@ class LocationContainer extends Component {
 
     this.state = {
       locations: [],
-      myLocations: [],
+      myLocations: null,
       date: '',
       time: '',
       newLocationId: '',
       myLocationForm: false,
+      allSavedLocations: [],
     }
+  }
+
+  getAllLocations = () => {
+    fetch(`http://localhost:3000/api/v1/locations`)
+      .then(res => res.json())
+      .then(json => this.setState({
+        allSavedLocations: json.data
+      }, () => this.getUserLocation))
+  }
+
+  getUserLocation() {
+    let myLocations = this.state.allSavedLocations.filter(location => location.user_id === 1)
+    this.setState({
+      myLocations
+    })
   }
 
   renderMyLocations = () => {
     return this.state.myLocations.map(location => {
       return (
-        <Location
+        <MyLocation
           info={location}
           key={location.id}
         />
@@ -78,7 +94,7 @@ class LocationContainer extends Component {
       .then(json => {console.log(json)})
     this.setState({
       myLocationForm: false
-    })
+    }, () => this.getUserBookings())
   }
 
   handleMyLocationFormChange = (e) => {
@@ -129,7 +145,7 @@ class LocationContainer extends Component {
         /><br />
         <button onClick={this.handleMyLocationsClick}>See My Locations</button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
-        {this.state.myLocations.length > 0 ? this.renderMyLocations() : null}
+        {this.state.myLocations ? this.renderMyLocations() : null}
         {this.state.locations.length > 0 ? this.renderLocations() : null}
       </div>
     )
