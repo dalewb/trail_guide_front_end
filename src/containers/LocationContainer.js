@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LocationByTown from '../components/LocationByTown';
 import Location from '../components/Location';
+import MyLocation from '../components/MyLocation';
 
 class LocationContainer extends Component {
   constructor(props) {
@@ -8,36 +9,31 @@ class LocationContainer extends Component {
 
     this.state = {
       locations: [],
-      myLocations: null,
+      myLocations: [],
       date: '',
       time: '',
       newLocationId: '',
       myLocationForm: false,
-      allSavedLocations: [],
     }
   }
 
-  getAllLocations = () => {
-    fetch(`http://localhost:3000/api/v1/locations`)
-      .then(res => res.json())
-      .then(json => this.setState({
-        allSavedLocations: json.data
-      }, () => this.getUserLocation))
-  }
-
-  getUserLocation() {
-    let myLocations = this.state.allSavedLocations.filter(location => location.user_id === 1)
-    this.setState({
-      myLocations
-    })
+  getUserLocations() {
+    fetch("http://localhost:3000/api/v1/user/locations/1")
+    .then(res => res.json())
+    .then(json => this.setState({
+      myLocations: json.data
+    }, () => {console.log(this.state)}))
   }
 
   renderMyLocations = () => {
     return this.state.myLocations.map(location => {
+      debugger
       return (
         <MyLocation
           info={location}
           key={location.id}
+          date={this.state.date}
+          time={this.state.time}
         />
       )
     })
@@ -91,10 +87,9 @@ class LocationContainer extends Component {
   		})
     })
       .then(res => res.json())
-      .then(json => {console.log(json)})
-    this.setState({
-      myLocationForm: false
-    }, () => this.getUserBookings())
+      .then(json => this.setState({
+        myLocationForm: false
+      }, () => this.getUserLocations()))
   }
 
   handleMyLocationFormChange = (e) => {
@@ -145,7 +140,7 @@ class LocationContainer extends Component {
         /><br />
         <button onClick={this.handleMyLocationsClick}>See My Locations</button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
-        {this.state.myLocations ? this.renderMyLocations() : null}
+        {this.state.myLocations.length > 1 ? this.renderMyLocations() : null}
         {this.state.locations.length > 0 ? this.renderLocations() : null}
       </div>
     )

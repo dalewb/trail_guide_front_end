@@ -53,10 +53,10 @@ function Location(props) {
             {props.info.state}
           </Typography>
           <Typography component="p">
-            Latitude: {props.info.lat}
+            Latitude: {props.info.latitude}
           </Typography>
           <Typography component="p">
-            Latitude: {props.info.lon}
+            Longitude: {props.info.longitude}
           </Typography>
           <Button size="small" color="primary" onClick={() => props.handleLocationClick(props.info)}>
             Add to Your Locations
@@ -64,15 +64,21 @@ function Location(props) {
           <Typography component="p">
             Description: {desc}
           </Typography>
+          <Typography component="p">
+            User Id: {props.info.user_id}
+          </Typography>
+          <Typography component="p">
+            Arrival Date: {props.date}
+          </Typography>
+          <Typography component="p">
+            Arrival Time: {props.time}
+          </Typography>
         </CardContent>
-        {/*<CardActions>
-          <Button size="small" color="primary" onClick={props.handleLocationPurchase}>
-            Buy Location
+        <CardActions>
+          <Button size="small" color="primary" onClick={() => props.handleLocationClick(props.info)}>
+            Add to Your Locations
           </Button>
-          <Button size="small" color="primary" onClick={() => props.handleRequestClick(props.info)}>
-            Create a Request
-          </Button>
-        </CardActions>*/}
+        </CardActions>}
       </Card>
       </Grid>
     </Grid>
