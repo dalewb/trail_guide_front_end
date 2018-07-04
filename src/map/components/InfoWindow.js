@@ -77,6 +77,12 @@ export class InfoWindow extends React.Component {
   }
 
   updatePosition() {
+    const {
+      map,
+      google,
+      mapCenter,
+      ...props
+    } = this.props;
     let pos = this.props.position;
     if (!(pos instanceof google.maps.LatLng)) {
       pos = pos && new google.maps.LatLng(pos.lat, pos.lng);
