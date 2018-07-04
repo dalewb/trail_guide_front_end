@@ -50,7 +50,7 @@ export const wrapper = (options) => (WrappedComponent) => {
     componentWillMount() {
       this.scriptCache = cache({
         google: GoogleApi({
-          apiKey: apiKey,
+          apiKey: "AIzaSyCJWxC8L5mK9wrlkILVrNP3RmDT2yEXi6Y",
           libraries: libraries
         })
       });
