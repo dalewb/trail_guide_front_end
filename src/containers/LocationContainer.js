@@ -24,7 +24,7 @@ class LocationContainer extends Component {
     .then(res => res.json())
     .then(json => this.setState({
       myLocations: json.data
-    }, () => {console.log(this.state)}))
+    }, () => {console.log(json)}))
   }
 
   handleLocationClick = (location) => {
@@ -124,6 +124,7 @@ class LocationContainer extends Component {
           info={location}
           key={location.id}
           userId="1"
+          id={location.id}
           handleDeleteLocationClick={this.handleDeleteLocationClick}
         />
       )

@@ -79,3 +79,25 @@ class GoogleMapsContainer extends React.Component {
 export default GoogleApiWrapper({
     api: (process.env.INSERT_API_KEY_HERE)
 })(GoogleMapsContainer)
+
+
+
+
+
+
+
+
+
+// Important! Always set the container height explicitly
+<div style={{ height: '100vh', width: '100vw' }}>
+  <GoogleMapReact
+    bootstrapURLKeys={{ key: "AIzaSyCJWxC8L5mK9wrlkILVrNP3RmDT2yEXi6Y" }}
+    defaultCenter={this.props.center}
+    defaultZoom={this.props.zoom}
+  >
+    <AnyReactComponent
+      lat={this.state.lat}
+      lng={this.state.lon}
+    />
+  </GoogleMapReact>
+</div>

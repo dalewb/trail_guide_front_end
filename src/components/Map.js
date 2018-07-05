@@ -3,50 +3,63 @@ import GoogleMapReact from 'google-map-react';
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
+let options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+};
+
 class Map extends Component {
   state = {
     lon: '',
     lat: '',
+    errorMsg: '',
+    center: {
+      clat: '',
+      clon: ''
+    },
+    zoom: 3,
   }
 
-  // logPosition = (position) => {
-  //   this.setState({
-  //     lat: position.coords.latitude,
-  //     lon: position.coords.longitude
-  //   }, () => {console.log("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude)})
-  // }
-  //
-  // showError = (error) => {
-  //     switch (error.code) {
-  //         case error.PERMISSION_DENIED:
-  //             alert("User denied the request for Geolocation.")
-  //             break;
-  //         case error.POSITION_UNAVAILABLE:
-  //             alert("Location information is unavailable.")
-  //             break;
-  //         case error.TIMEOUT:
-  //             alert("The request to get user location timed out.")
-  //             break;
-  //         case error.UNKNOWN_ERR:
-  //             alert("An unknown error occurred.")
-  //             break;
-  //     }
-  // }
-  //
-  // if (navigator.geolocationllll) {
-  //     navigator.geolocation.getCurrentPosition(logPosition)
-  // } else {
-  //     console.log("Geolocation API isn't supported.")
-  // }
+  componentDidMount() {
+    this.CurrentPosition()
+  }
 
+  setCurrentPositionSuccess = (latitude, longitude) => {
+    this.setState({
+      center: {
+        clat: latitude,
+        clon: longitude
+      }
+    })
+  }
+
+  setCurrentPositionError = (error) => {
+    this.setState({
+      errorMsg: error
+    })
+  }
 
   static defaultProps = {
     center: {
-      lat: 40.7051169,
-      lng: -74.0142273
+      lat: 40.705260,
+      lng: -74.013907
     },
-    zoom: 11
+    zoom: 13
   };
+
+  success = (pos) => {
+    let crd = pos.coords;
+    this.setCurrentPositionSuccess(crd.latitude, crd.longitude)
+  }
+
+  error = (err) => {
+    this.setCurrentPositionError(`ERROR(${err.code}): ${err.message}`);
+  }
+
+  CurrentPosition() {
+    return navigator.geolocation.getCurrentPosition(this.success, this.error, options);
+  }
 
   render() {
     return (
@@ -58,8 +71,8 @@ class Map extends Component {
           defaultZoom={this.props.zoom}
         >
           <AnyReactComponent
-            lat={40.7051169}
-            lng={-74.0142273}
+            lat={this.state.lat}
+            lng={this.state.lon}
           />
         </GoogleMapReact>
       </div>
