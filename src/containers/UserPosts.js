@@ -45,7 +45,7 @@ class UserPosts extends Component {
   render() {
     return (
       <div>
-        <h2>Your Requests</h2>
+        <h3>Your Requests!</h3>
         {this.state.posts.length > 0 ? this.renderUserPosts() : null}
       </div>
     )

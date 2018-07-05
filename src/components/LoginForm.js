@@ -24,10 +24,11 @@ class loginForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        <h3>Log In!</h3><br />
         Username
-        <input type='text' name='username' onChange={this.handleChange}/>
+        <input type='text' name='username' onChange={this.handleChange}/><br />
         Password
-        <input type='password' name='password' onChange={this.handleChange}/>
+        <input type='password' name='password' onChange={this.handleChange}/><br />
         <input type='submit' />
       </form>
     )

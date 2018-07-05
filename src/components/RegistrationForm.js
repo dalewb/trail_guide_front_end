@@ -49,6 +49,7 @@ class RegistrationForm extends Component {
   render() {
     return (
       <div>
+        <h3>Register!</h3>
         <form onSubmit={this.handleRegistrationSubmit}><br />
           <label>
             Username:

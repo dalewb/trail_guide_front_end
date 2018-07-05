@@ -132,6 +132,7 @@ class Search extends Component {
     console.log("-------");
     return (
       <div>
+        <h3>Search for Items!</h3>
         {this.state.requestItem !== null ? this.renderRequestForm() : null}
         <SearchForm
           handleSearchChange={this.handleSearchChange}
