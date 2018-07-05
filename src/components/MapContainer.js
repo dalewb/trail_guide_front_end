@@ -22,7 +22,7 @@ class MapContainer extends Component {
   }
 
   componentDidMount() {
-    this.CurrentPosition()
+    this.currentPosition()
   }
 
   setCurrentPositionSuccess = (latitude, longitude) => {
@@ -31,7 +31,7 @@ class MapContainer extends Component {
         clat: latitude,
         clon: longitude
       }
-    })
+    }, () => {console.log(this.state);})
   }
 
   setCurrentPositionError = (error) => {
@@ -51,21 +51,28 @@ class MapContainer extends Component {
   success = (pos) => {
     let crd = pos.coords;
     this.setCurrentPositionSuccess(crd.latitude, crd.longitude)
+    return {
+      lat: crd.latitude,
+      lon: crd.longitude,
+    }
   }
 
   error = (err) => {
     this.setCurrentPositionError(`ERROR(${err.code}): ${err.message}`);
   }
 
-  CurrentPosition() {
+  currentPosition() {
     return navigator.geolocation.getCurrentPosition(this.success, this.error, options);
   }
 
   render() {
     return (
       // Important! Always set the container height explicitly
-      <Map google={this.props.google} zoom={14}>
-
+      <Map
+        google={this.props.google}
+        center={this.currentPosition()}
+        zoom={14}
+      >
         <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
 

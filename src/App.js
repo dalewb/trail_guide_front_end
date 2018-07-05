@@ -6,7 +6,7 @@ import Search from './containers/Search';
 import UserPosts from './containers/UserPosts';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
-import MapContainer from './components/Map'
+import MapContainer from './components/MapContainer'
 import LocationContainer from './containers/LocationContainer'
 
 class App extends Component {
