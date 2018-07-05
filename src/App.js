@@ -6,7 +6,7 @@ import Search from './containers/Search';
 import UserPosts from './containers/UserPosts';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
-import MapLeaflet from './components/Map'
+import MapContainer from './components/Map'
 import LocationContainer from './containers/LocationContainer'
 
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
           </Button>
         </header>
         <div>
-          <Route path="/map" component={MapLeaflet}/>
+          <Route path="/map" component={MapContainer}/>
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegistrationForm}/>
           <Route path="/posts" component={UserPosts}/>
