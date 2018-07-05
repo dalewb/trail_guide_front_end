@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
 import MapContainer from './components/MapContainer'
 import LocationContainer from './containers/LocationContainer'
+import CreateCommodity from './components/CreateCommodity'
 
 class App extends Component {
   render() {
@@ -42,6 +43,11 @@ class App extends Component {
             </Link>
           </Button>
           <Button size="small" color="primary">
+            <Link to="/create_commodity">
+              Create Custom Commodity
+            </Link>
+          </Button>
+          <Button size="small" color="primary">
             <Link to="/locations">
               Search Locations
             </Link>
@@ -53,6 +59,7 @@ class App extends Component {
           <Route path="/register" component={RegistrationForm}/>
           <Route path="/posts" component={UserPosts}/>
           <Route path="/search" component={Search}/>
+          <Route path="/create_commodity" component={CreateCommodity}/>
           <Route path="/locations" component={LocationContainer}/>
         </div>
       </div>
