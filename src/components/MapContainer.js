@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {GoogleMapReact, Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import MapComponent from './MapComponent'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -67,19 +68,7 @@ class MapContainer extends Component {
 
   render() {
     return (
-      // Important! Always set the container height explicitly
-      <Map
-        google={this.props.google}
-        center={this.currentPosition()}
-        zoom={14}
-      >
-        <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-
-        <InfoWindow onClose={this.onInfoWindowClose}>
-
-        </InfoWindow>
-      </Map>
+      <MapComponent />
     );
   }
 }
