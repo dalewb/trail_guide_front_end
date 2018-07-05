@@ -7,14 +7,30 @@ class Post extends Component {
 
     this.state = {
       commodity: '',
+      username: '',
+      user_type: '',
+      gender: '',
+      start_date: '',
     }
   }
 
   renderPost = () => {
+    let date_needed = ''
+    if (!this.props.info.date_needed) {
+      date_needed = "Not Provided"
+    } else {
+      date_needed = this.props.info.date_needed
+    }
+
     return (
       <div>
-        <p>Post Date: {this.props.info.date_posted}</p>
         <p>Item: {this.state.commodity.name}</p>
+        <p>Date Posted: {this.props.info.date_posted}</p>
+        <p>Date Needed: {date_needed}</p>
+        <p>Trail Name: {this.state.username}</p>
+        <p>Type: {this.state.user_type}</p>
+        <p>Gender: {this.state.gender}</p>
+        <p>Start Date: {this.state.start_date}</p>
         <button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</button>
       </div>
     )
@@ -26,6 +42,15 @@ class Post extends Component {
       .then(json => this.setState({
         commodity: json.data
       }, () => this.renderPost()))
+
+    fetch(`http://localhost:3000/api/v1/users/${this.props.info.user_id}/`)
+      .then(res => res.json())
+      .then(json => this.setState({
+        username: json.data.username,
+        user_type: json.data.user_type,
+        gender: json.data.gender,
+        start_date: json.data.start_date,
+      }, () => {console.log(this.state)}))
   }
 
   render() {
