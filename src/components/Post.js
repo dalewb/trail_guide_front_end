@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 // import Card from '../material-kit-react-v1.1.0/src/components/Card/Card'
 
 class Post extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      commodity: '',
-      username: '',
-      user_type: '',
-      gender: '',
-      start_date: '',
+      commodity: props.info.commodity,
+      username: props.info.user.username,
+      user_type: props.info.user.user_type,
+      gender: props.info.user.gender,
+      start_date: props.info.user.start_date,
     }
   }
 
@@ -35,23 +35,6 @@ class Post extends Component {
         <button onClick={() => this.props.addLocationToPost(this.props.info.id)}>Add To Location</button>
       </div>
     )
-  }
-
-  componentDidMount() {
-    fetch(`http://localhost:3000/api/v1/commodities/${this.props.info.commodity_id}`)
-      .then(res => res.json())
-      .then(json => this.setState({
-        commodity: json.data
-      }, () => this.renderPost()))
-
-    fetch(`http://localhost:3000/api/v1/users/${this.props.info.user_id}/`)
-      .then(res => res.json())
-      .then(json => this.setState({
-        username: json.data.username,
-        user_type: json.data.user_type,
-        gender: json.data.gender,
-        start_date: json.data.start_date,
-      }, () => {console.log(this.state)}))
   }
 
   render() {

@@ -19,13 +19,13 @@ class UserPosts extends Component {
     fetch(`http://localhost:3000/api/v1/posts/`)
       .then(res => res.json())
       .then(json => {this.setState({
-        posts: json.data
+        posts: json
       })
     })
   }
 
   AddLocationToPost = () => {
-    
+
   }
 
   renderUserPosts = () => {
