@@ -25,7 +25,7 @@ class UserPosts extends Component {
   }
 
   AddLocationToPost = () => {
-
+    
   }
 
   renderUserPosts = () => {
