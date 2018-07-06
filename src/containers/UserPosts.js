@@ -7,7 +7,12 @@ class UserPosts extends Component {
 
     this.state = {
       posts: [],
+      renderLocations: false,
     }
+  }
+
+  componentDidMount() {
+    this.getPosts()
   }
 
   getPosts = () => {
@@ -19,14 +24,19 @@ class UserPosts extends Component {
     })
   }
 
-  componentDidMount() {
-    this.getPosts()
+  AddLocationToPost = () => {
+
   }
 
   renderUserPosts = () => {
     return this.state.posts.map(post => {
       return (
-        <Post info={post} key={post.id} handleDeletePost={this.handleDeletePost} />
+        <Post
+          info={post}
+          key={post.id}
+          handleDeletePost={this.handleDeletePost}
+          AddLocationToPost={this.AddLocationToPost}
+        />
       )
     })
   }

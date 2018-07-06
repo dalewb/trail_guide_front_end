@@ -32,6 +32,7 @@ class Post extends Component {
         <p>Gender: {this.state.gender}</p>
         <p>Start Date: {this.state.start_date}</p>
         <button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</button>
+        <button onClick={() => this.props.addLocationToPost(this.props.info.id)}>Add To Location</button>
       </div>
     )
   }
