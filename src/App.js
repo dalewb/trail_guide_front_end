@@ -9,6 +9,7 @@ import RegistrationForm from './components/RegistrationForm';
 import MapContainer from './components/MapContainer'
 import LocationContainer from './containers/LocationContainer'
 import CreateCommodity from './components/CreateCommodity'
+import HomeContainer from './containers/HomeContainer'
 
 class App extends Component {
   render() {
@@ -33,6 +34,11 @@ class App extends Component {
             </Link>
           </Button>
           <Button size="small" color="primary">
+            <Link to="/home">
+              Home Page
+            </Link>
+          </Button>
+          <Button size="small" color="primary">
             <Link to="/posts">
               View Your Posts
             </Link>
@@ -54,6 +60,7 @@ class App extends Component {
           </Button>
         </header>
         <div>
+          <Route path="/home" component={HomeContainer}/>
           <Route path="/map" component={MapContainer}/>
           <Route path="/login" component={LoginForm}/>
           <Route path="/register" component={RegistrationForm}/>
