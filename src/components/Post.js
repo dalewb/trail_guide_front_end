@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 // import Card from '../material-kit-react-v1.1.0/src/components/Card/Card'
 
 class Post extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      commodity: props.info.commodity,
-      username: props.info.user.username,
-      user_type: props.info.user.user_type,
-      gender: props.info.user.gender,
-      start_date: props.info.user.start_date,
-    }
-  }
+  // constructor(props) {
+  //   super(props)
+  //   debugger
+  //   this.state = {
+  //     commodityName: props.info.commodity_name,
+  //     username: props.info.user.username,
+  //     user_type: props.info.user.user_type,
+  //     gender: props.info.user.gender,
+  //     start_date: props.info.user.start_date,
+  //   }
+  // }
 
   renderPost = () => {
     let date_needed = ''
@@ -25,10 +25,10 @@ class Post extends Component {
 
     return (
       <div>
-        <p>Item: {this.state.commodity.name}</p>
+        <p>Item: {this.props.commodity_name}</p>
         <p>Date Posted: {this.props.info.date_posted}</p>
         <p>Date Needed: {date_needed}</p>
-        <p>Trail Name: {this.state.username}</p>
+        <p>Trail Name: {this.props.username}</p>
         <p>Type: {this.state.user_type}</p>
         <p>Gender: {this.state.gender}</p>
         <p>Start Date: {this.state.start_date}</p>
@@ -48,4 +48,4 @@ class Post extends Component {
 
 }
 
-export default Post;
+export default connect()(Post);

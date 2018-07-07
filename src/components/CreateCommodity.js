@@ -86,4 +86,4 @@ class CreateCommodity extends Component {
   }
 }
 
-export default CreateCommodity;
+export default connect()(CreateCommodity);

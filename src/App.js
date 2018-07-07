@@ -6,28 +6,31 @@ import Search from './containers/Search';
 import UserPosts from './containers/UserPosts';
 import LoginForm from './components/LoginForm';
 import RegistrationForm from './components/RegistrationForm';
-import MapContainer from './components/MapContainer'
-import LocationContainer from './containers/LocationContainer'
-import CreateCommodity from './components/CreateCommodity'
-import HomeContainer from './containers/HomeContainer'
+import MapContainer from './components/MapContainer';
+import LocationContainer from './containers/LocationContainer';
+import CreateCommodity from './components/CreateCommodity';
+import HomeContainer from './containers/HomeContainer';
+import { connect } from 'react-redux';
 
 class App extends Component {
-  state = {
-    allLocations: [],
-    allCommodities: [],
-    userLocations: [],
-    userCommodities: [],
-    user: {},
-  }
+  // state = {
+  //   allLocations: [],
+  //   allCommodities: [],
+  //   userLocations: [],
+  //   userCommodities: [],
+  //   user: {},
+  //   loading: false,
+  //   error: null,
+  // }
 
-  componentDidMount() {
-    this.fetchAllInfo()
-  }
+  // componentDidMount() {
+  //   this.fetchAllInfo()
+  // }
 
-  fetchAllInfo = () => {
-    this.fetchBookings()
-    this.fetchPosts()
-  }
+  // fetchAllInfo = () => {
+  //   this.fetchBookings()
+  //   this.fetchPosts()
+  // }
 
   // fetchUser = () => {
   //   fetch(`http://localhost:3000/api/v1/users/${user.id}`)
@@ -39,21 +42,21 @@ class App extends Component {
   //
   // search user by username once entered, match password, get all info.
 
-  fetchBookings = () => {
-    fetch(`http://localhost:3000/api/v1/${1}/bookings/`)
-    .then(res => res.json())
-    .then(json => this.setState({
-      userLocations: json
-    }))
-  }
-
-  fetchPosts = () => {
-    fetch(`http://localhost:3000/api/v1/${1}/posts/`)
-    .then(res => res.json())
-    .then(json => this.setState({
-      userCommodities: json
-    }))
-  }
+  // fetchBookings = () => {
+  //   fetch(`http://localhost:3000/api/v1/${1}/bookings/`)
+  //   .then(res => res.json())
+  //   .then(json => this.setState({
+  //     userLocations: json
+  //   }))
+  // }
+  //
+  // fetchPosts = () => {
+  //   fetch(`http://localhost:3000/api/v1/${1}/posts/`)
+  //   .then(res => res.json())
+  //   .then(json => this.setState({
+  //     userCommodities: json
+  //   }))
+  // }
 
   render() {
     return (
@@ -117,4 +120,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);

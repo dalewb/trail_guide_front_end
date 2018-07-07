@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
 import Post from '../components/Post';
 import { connect } from 'react-redux';
+import {fetchPosts} from '../reduxComponents/actions';
 
 class UserPosts extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      posts: [],
-      renderLocations: false,
-    }
-  }
 
   componentDidMount() {
-    this.getPosts()
+    this.props.dispatch(fetchPosts())
   }
 
   getPosts = () => {
@@ -30,8 +23,7 @@ class UserPosts extends Component {
   }
 
   renderUserPosts = () => {
-    debugger
-    return this.props.posts.map(post => {
+    return this.props.userCommodities.map(post => {
       return (
         <Post
           info={post}
@@ -55,11 +47,20 @@ class UserPosts extends Component {
   }
 
   render() {
-    debugger
+    const { error, loading, userCommodities } = this.props;
+
+    if (error) {
+      return <div>Error! {error.message}</div>;
+    }
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+
     return (
       <div>
         <h3>Your Requests!</h3>
-        {this.props.posts.length > 0 ? this.renderUserPosts() : null}
+        {userCommodities.length > 0 ? this.renderUserPosts() : null}
       </div>
     )
   }
@@ -67,10 +68,21 @@ class UserPosts extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log("mapStateToProps", state);
   return {
-    posts: [],
+    userCommodities: state.userCommodities,
+    loading: state.loading,
+    error: state.error,
     renderLocations: false,
   }
 }
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     fetchPosts: () => {
+//       dispatch({type: "FETCH_POSTS_BEGIN"})
+//     }
+//   }
+// }
 
 export default connect(mapStateToProps)(UserPosts);

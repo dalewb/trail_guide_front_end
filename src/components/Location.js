@@ -78,4 +78,4 @@ Location.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Location);
+export default connect()(withStyles(styles)(Location));

@@ -54,4 +54,4 @@ class LocationByTown extends Component {
   }
 }
 
-export default LocationByTown;
+export default connect()(LocationByTown);

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import {GoogleMapReact, Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 let options = {
   enableHighAccuracy: true,
@@ -76,9 +74,7 @@ class MapContainer extends Component {
         <Marker onClick={this.onMarkerClick}
                 name={'Current location'} />
 
-        <InfoWindow onClose={this.onInfoWindowClose}>
 
-        </InfoWindow>
       </Map>
     );
   }

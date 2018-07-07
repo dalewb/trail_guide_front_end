@@ -23,4 +23,4 @@ class HomeContainer extends Component {
   }
 }
 
-export default HomeContainer;
+export default connect()(HomeContainer);

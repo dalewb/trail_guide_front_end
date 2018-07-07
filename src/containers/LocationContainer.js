@@ -169,4 +169,4 @@ class LocationContainer extends Component {
   }
 }
 
-export default LocationContainer;
+export default connect()(LocationContainer);
