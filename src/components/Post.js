@@ -25,13 +25,14 @@ class Post extends Component {
 
     return (
       <div>
+        <p>Post</p>
         <p>Item: {this.props.commodity_name}</p>
         <p>Date Posted: {this.props.info.date_posted}</p>
         <p>Date Needed: {date_needed}</p>
-        <p>Trail Name: {this.props.username}</p>
-        <p>Type: {this.state.user_type}</p>
-        <p>Gender: {this.state.gender}</p>
-        <p>Start Date: {this.state.start_date}</p>
+        <p>Trail Name: Need to connect user props</p>
+        <p>Type: Need to connect user props</p>
+        <p>Gender: Need to connect user props</p>
+        <p>Start Date: Need to connect user props</p>
         <button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</button>
         <button onClick={() => this.props.addLocationToPost(this.props.info.id)}>Add To Location</button>
       </div>
@@ -41,11 +42,12 @@ class Post extends Component {
   render() {
     return (
       <div>
-        {this.state.commodity ? this.renderPost() : null}
+        {this.renderPost()}
       </div>
     )
   }
 
 }
+
 
 export default connect()(Post);

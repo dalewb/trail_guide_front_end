@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Post from '../components/Post';
 import { connect } from 'react-redux';
-import {fetchPosts} from '../reduxComponents/actions';
+import {fetchPosts} from '../reduxComponents/postActions';
 
 class UserPosts extends Component {
 
@@ -24,6 +24,7 @@ class UserPosts extends Component {
 
   renderUserPosts = () => {
     return this.props.userCommodities.map(post => {
+      debugger
       return (
         <Post
           info={post}

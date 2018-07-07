@@ -2,7 +2,7 @@ import {
   FETCH_POSTS_BEGIN,
   FETCH_POSTS_SUCCESS,
   FETCH_POSTS_FAILURE
-} from './actions';
+} from './postActions';
 
 const initialState = {
   allLocations: [],
