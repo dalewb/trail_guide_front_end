@@ -24,7 +24,6 @@ class UserPosts extends Component {
 
   renderUserPosts = () => {
     return this.props.userCommodities.map(post => {
-      debugger
       return (
         <Post
           info={post}
