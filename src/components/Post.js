@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import Card from '../material-kit-react-v1.1.0/src/components/Card/Card'
 
 class Post extends Component {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LocationByTown from '../components/LocationByTown';
 import Location from '../components/Location';
 import MyLocation from '../components/MyLocation';
+import { connect } from 'react-redux';
 
 class LocationContainer extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class LocationContainer extends Component {
   }
 
   getUserLocations() {
-    fetch("http://localhost:3000/api/v1/bookings/locations/1")
+    fetch("http://localhost:3000/api/v1/1/bookings")
     .then(res => res.json())
     .then(json => this.setState({
       myLocations: json.data

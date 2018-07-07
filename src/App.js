@@ -12,6 +12,49 @@ import CreateCommodity from './components/CreateCommodity'
 import HomeContainer from './containers/HomeContainer'
 
 class App extends Component {
+  state = {
+    allLocations: [],
+    allCommodities: [],
+    userLocations: [],
+    userCommodities: [],
+    user: {},
+  }
+
+  componentDidMount() {
+    this.fetchAllInfo()
+  }
+
+  fetchAllInfo = () => {
+    this.fetchBookings()
+    this.fetchPosts()
+  }
+
+  // fetchUser = () => {
+  //   fetch(`http://localhost:3000/api/v1/users/${user.id}`)
+  //   .then(res => res.json())
+  //   .then(json => this.setState({
+  //     user: json.data
+  //   }))
+  // }
+  //
+  // search user by username once entered, match password, get all info.
+
+  fetchBookings = () => {
+    fetch(`http://localhost:3000/api/v1/${1}/bookings/`)
+    .then(res => res.json())
+    .then(json => this.setState({
+      userLocations: json
+    }))
+  }
+
+  fetchPosts = () => {
+    fetch(`http://localhost:3000/api/v1/${1}/posts/`)
+    .then(res => res.json())
+    .then(json => this.setState({
+      userCommodities: json
+    }))
+  }
+
   render() {
     return (
       <div className="App">

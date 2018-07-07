@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Post from '../components/Post'
+import Post from '../components/Post';
+import { connect } from 'react-redux';
 
 class UserPosts extends Component {
   constructor() {
@@ -16,7 +17,7 @@ class UserPosts extends Component {
   }
 
   getPosts = () => {
-    fetch(`http://localhost:3000/api/v1/posts/`)
+    fetch(`http://localhost:3000/api/v1/1/posts/`)
       .then(res => res.json())
       .then(json => {this.setState({
         posts: json

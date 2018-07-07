@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SearchForm from '../components/SearchForm'
 import Item from '../components/Item'
+import { connect } from 'react-redux';
 
 class Search extends Component {
   constructor() {

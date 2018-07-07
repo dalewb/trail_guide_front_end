@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class HomeContainer extends Component {
 
@@ -12,7 +13,7 @@ class HomeContainer extends Component {
   }
 
   renderUserPosts = () => {
-    
+
   }
 
   render() {
