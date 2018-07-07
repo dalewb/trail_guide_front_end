@@ -30,7 +30,8 @@ class UserPosts extends Component {
   }
 
   renderUserPosts = () => {
-    return this.state.posts.map(post => {
+    debugger
+    return this.props.posts.map(post => {
       return (
         <Post
           info={post}
@@ -54,14 +55,22 @@ class UserPosts extends Component {
   }
 
   render() {
+    debugger
     return (
       <div>
         <h3>Your Requests!</h3>
-        {this.state.posts.length > 0 ? this.renderUserPosts() : null}
+        {this.props.posts.length > 0 ? this.renderUserPosts() : null}
       </div>
     )
   }
 
 }
 
-export default UserPosts;
+function mapStateToProps(state) {
+  return {
+    posts: [],
+    renderLocations: false,
+  }
+}
+
+export default connect(mapStateToProps)(UserPosts);
