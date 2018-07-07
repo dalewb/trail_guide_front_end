@@ -1,33 +1,33 @@
-export const FETCH_POSTS_BEGIN   = 'FETCH_POSTS_BEGIN';
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
-export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
+export const FETCH_BOOKINGS_BEGIN   = 'FETCH_BOOKINGS_BEGIN';
+export const FETCH_BOOKINGS_SUCCESS = 'FETCH_BOOKINGS_SUCCESS';
+export const FETCH_BOOKINGS_FAILURE = 'FETCH_BOOKINGS_FAILURE';
 
-export const fetchPostsBegin = () => ({
-  type: FETCH_POSTS_BEGIN
+export const fetchBookingsBegin = () => ({
+  type: FETCH_BOOKINGS_BEGIN
 });
 
-export const fetchPostsSuccess = posts => ({
-  type: FETCH_POSTS_SUCCESS,
-  payload: { posts }
+export const fetchBookingsSuccess = bookings => ({
+  type: FETCH_BOOKINGS_SUCCESS,
+  payload: { bookings }
 });
 
-export const fetchPostsFailure = error => ({
-  type: FETCH_POSTS_FAILURE,
+export const fetchBookingsFailure = error => ({
+  type: FETCH_BOOKINGS_FAILURE,
   payload: { error }
 });
 
-export function fetchPosts() {
-  console.log("Inside Fetch Posts")
+export function fetchBookings() {
+  console.log("Inside Fetch Bookings")
   return dispatch => {
-    dispatch(fetchPostsBegin());
-    return fetch(`http://localhost:3000/api/v1/1/posts/`)
+    dispatch(fetchBookingsBegin());
+    return fetch(`http://localhost:3000/api/v1/1/bookings/`)
       .then(res => handleErrors(res))
       .then(res => res.json())
       .then(json => {
-        dispatch(fetchPostsSuccess(json));
+        dispatch(fetchBookingsSuccess(json));
         return json;
       })
-      .catch(error => dispatch(fetchPostsFailure(error)));
+      .catch(error => dispatch(fetchBookingsFailure(error)));
   };
 }
 

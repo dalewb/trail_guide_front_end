@@ -9,15 +9,6 @@ class UserPosts extends Component {
     this.props.dispatch(fetchPosts())
   }
 
-  getPosts = () => {
-    fetch(`http://localhost:3000/api/v1/1/posts/`)
-      .then(res => res.json())
-      .then(json => {this.setState({
-        posts: json
-      })
-    })
-  }
-
   AddLocationToPost = () => {
 
   }

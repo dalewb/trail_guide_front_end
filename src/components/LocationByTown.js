@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class LocationByTown extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
+    state = {
       city: '',
       state: '',
     }
-  }
 
   capitalizeFirstLetter = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -21,7 +17,7 @@ class LocationByTown extends Component {
     })
   }
 
-  handleSubmit = (e) => {
+  getSearchLocations = (e) => {
     e.preventDefault()
     let searchCity = this.state.city.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
     let searchState = this.state.state.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
@@ -38,7 +34,7 @@ class LocationByTown extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.getSearchLocations}>
         <h3>Find a Location!</h3>
         <label>
           City:
@@ -54,4 +50,12 @@ class LocationByTown extends Component {
   }
 }
 
-export default connect()(LocationByTown);
+function mapDispatchToProps(dispatch) {
+  return{
+    getSearchLocations: () => {
+      dispatch({type: "GET_SEARCH_LOCATIONS", payload: this.state})
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LocationByTown);
