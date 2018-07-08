@@ -6,6 +6,7 @@ import {fetchPosts} from '../reduxComponents/postActions';
 class UserPosts extends Component {
 
   componentDidMount() {
+
     this.props.dispatch(fetchPosts())
   }
 
