@@ -1,18 +1,13 @@
 import React, { Component } from 'react';
+import { Form } from 'semantic-ui-react';
 
 function RequestForm(props) {
   return (
-    <form onSubmit={props.handleRequestSubmit}>
-      <label>
-        Date Needed:
-        <input type="text" id="date_needed"></input>
-      </label>
-      <label>
-        Priority Level:
-        <input type="text" id="priority"></input>
-      </label>
-      <input type="submit" value="Submit"></input>
-    </form>
+    <Form onSubmit={props.handleRequestSubmit}>
+        <Form.Input type="text" id="date_needed" label="Date Needed" placeholder="Date Needed"/>
+        <Form.Input type="text" id="priority" label="Priority Level" placeholder="Priority Level"/>
+      <Form.Button type="submit" value="Submit">Submit</Form.Button>
+    </Form>
   )
 }
 

@@ -75,9 +75,19 @@ class SearchContainer extends Component {
 
   renderRequestForm = () => {
     return (
-      <Popup trigger={<Button content="Create Request" />}
-        content={<RequestForm handleRequestSubmit={this.handleRequestSubmit}/>}
-      />
+      <RequestForm handleRequestSubmit={this.handleRequestSubmit}/>
+    )
+  }
+
+  renderSearchForm = () => {
+    console.log("renderSearchForm, this is: ", this);
+    return (
+      <div>
+        <Input
+          onChange={this.handleSearchChange}
+        />
+        <Button onClick={this.handleSearchSubmit} content="Search"/>
+      </div>
     )
   }
 
@@ -131,11 +141,9 @@ class SearchContainer extends Component {
     return (
       <div>
         <h3>Search for Items!</h3>
-        {/*this.state.requestItem !== null ? this.renderRequestForm() : null*/}
-        <Input
-          onChange={this.handleSearchChange}
-        />
-      <Button onClick={this.handleSearchSubmit} content="Search"/>
+        {this.state.requestItem !== null ? this.renderRequestForm() : null}
+        {this.state.requestItem === null ? this.renderSearchForm() : null}
+
 
       <Grid padded columns={4}>
           {this.state.itemList && this.state.requestItem === null ? this.renderItems() : null}

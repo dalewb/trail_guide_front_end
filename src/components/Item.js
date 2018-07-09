@@ -24,11 +24,9 @@ function Item(props) {
           <Button onClick={props.handleItemPurchase}>
             Buy Item
           </Button>
-          <Popup
-            trigger={<Button content="Create Request" />}
-            content={<RequestForm handleRequestSubmit={props.handleRequestSubmit}/>}
-            on='click'
-          />
+          <Button onClick={() => props.handleRequestClick(props.info)}>
+             Create a Request
+          </Button>
         </Card.Content>
     </Card>
   </Grid.Column>
