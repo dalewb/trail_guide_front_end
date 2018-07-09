@@ -4,7 +4,7 @@ import './App.css';
 import Button from '@material-ui/core/Button';
 import Search from './containers/Search';
 import UserPosts from './containers/UserPosts';
-import LoginForm from './components/LoginForm';
+import LoginContainer from './containers/LoginContainer';
 import RegistrationForm from './components/RegistrationForm';
 import MapContainer from './components/MapContainer';
 import LocationContainer from './containers/LocationContainer';
@@ -108,7 +108,7 @@ class App extends Component {
         <div>
           <Route path="/home" component={HomeContainer}/>
           <Route path="/map" component={MapContainer}/>
-          <Route path="/login" component={LoginForm}/>
+          <Route path="/login" component={LoginContainer}/>
           <Route path="/register" component={RegistrationForm}/>
           <Route path="/posts" component={UserPosts}/>
           <Route path="/search" component={Search}/>

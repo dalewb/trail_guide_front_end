@@ -55,7 +55,7 @@ class LocationByTown extends Component {
 }
 
 function mapStateToProps(state) {
-
+  debugger
 }
 
 export default connect()(LocationByTown);

@@ -108,7 +108,7 @@ class LocationContainer extends Component {
 
   renderLocations = () => {
     console.log("inside render locations",this.props);
-    return this.props.userlocations.map(location => {
+    return this.props.userLocations.map(location => {
       return (
         <Location
           info={location}
@@ -171,7 +171,7 @@ class LocationContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("In mapStateToProps in LocationContainer, state is: ", state );
+  console.log("In mapStateToProps in LocationContainer, state.bookingReducer.userLocations is: ", state.bookingReducer.userLocations );
   return {
     userLocations: state.bookingReducer.userLocations,
     loading: state.loading,
