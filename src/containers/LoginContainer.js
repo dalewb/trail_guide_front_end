@@ -13,13 +13,17 @@ class LoginContainer extends Component {
     fetch(`http://localhost:3000/api/v1/users`)
       .then(res => res.json())
       .then(json => this.setState({
-        allUsers: json
-      }))
+        allUsers: json.data
+      },() => console.log("users state",this.state)))
   }
 
   findUser = (info) => {
+    console.log(this.state);
     let user = this.state.allUsers.find(user => user.username === info.username)
-    debugger
+    if (user) {
+      console.log("In findUser, props are: ", this.props)
+      this.props.setUser(user)
+    }
   }
 
   render() {
@@ -35,4 +39,15 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(LoginContainer);
+function mapDispatchToProps(dispatch) {
+  return {
+    setUser: (user) => {
+      dispatch({
+        type: "SET_USER",
+        payload: { user }
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

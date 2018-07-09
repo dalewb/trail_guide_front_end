@@ -6,6 +6,7 @@ import { fetchPosts, deletePost } from '../reduxComponents/postActions';
 class UserPosts extends Component {
 
   componentDidMount() {
+    console.log("userPosts before debugger, props are: ",this.props);
     this.props.dispatch(fetchPosts())
   }
 
@@ -56,6 +57,7 @@ function mapStateToProps(state) {
   console.log("Posts mapStateToProps, state is: ", state);
   return {
     userCommodities: state.postReducer.userCommodities,
+    user: state.loginReducer.user,
     loading: state.loading,
     error: state.error,
     renderLocations: false,

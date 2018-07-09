@@ -22,17 +22,17 @@ class Post extends Component {
     } else {
       date_needed = this.props.info.date_needed
     }
-    
+
     return (
       <div>
         <p>Post</p>
         <p>Item: {this.props.info.commodity_name}</p>
         <p>Date Posted: {this.props.info.date_posted}</p>
         <p>Date Needed: {date_needed}</p>
-        <p>Trail Name: Need to connect user props</p>
-        <p>Type: Need to connect user props</p>
-        <p>Gender: Need to connect user props</p>
-        <p>Start Date: Need to connect user props</p>
+        <p>Trail Name: {this.props.user.username}</p>
+        <p>Type: {this.props.user.user_type}</p>
+        <p>Gender: {this.props.user.gender}</p>
+        <p>Start Date: {this.props.user.start_date}</p>
         <button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</button>
         <button onClick={() => this.props.addLocationToPost(this.props.info.id)}>Add To Location</button>
       </div>
@@ -49,5 +49,12 @@ class Post extends Component {
 
 }
 
+function mapStateToProps(state) {
+  console.log("Inside mapStateToProps in Post, state is: ", state);
+  return {
+    user: state.loginReducer.user
+  }
+}
 
-export default connect()(Post);
+
+export default connect(mapStateToProps)(Post);
