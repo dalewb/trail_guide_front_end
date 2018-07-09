@@ -60,29 +60,23 @@ class CreateCommodity extends Component {
 
   render() {
     return (
+      <Card.Group centered>
       <Form onSubmit={this.handleSubmit}>
-        <h3>Create Custom Commodity!</h3><br />
-        <label>
-          Commodity Name:
-          <input type="text" name="name" onChange={this.handleChange}></input>
-        </label><br />
-        <label>
-          Date Needed:
-          <input type="text" name="date_needed" onChange={this.handleChange}></input>
-        </label>
-        <div>
-          Commodity Type:
-          <label>
-            <input type="radio" name="type" value="item" onChange={this.handleChange}></input>
-            Item
-          </label>
-          <label>
-            <input type="radio" name="type" value="service" onChange={this.handleChange}></input>
-            Service
-          </label><br />
-          <input type="submit"></input>
-        </div>
+        <h3>Create Custom Commodity!</h3>
+          <Form.Field>
+          <input type="text" name="name" placeholder="Name" onChange={this.handleChange} />
+          </Form.Field>
+          <Form.Field>
+          <input type="text" name="date_needed" placeholder="Date Needed" onChange={this.handleChange} />
+          </Form.Field>
+          <Form.Group inline centered>
+            <label>Type: </label>
+            <Form.Radio label="Item"  name="type" value="item" onChange={this.handleChange} />
+            <Form.Radio label="Service"  name="type" value="service" onChange={this.handleChange} />
+          </Form.Group>
+          <Button type="submit" value="Submit">Submit</Button>
       </Form>
+      </Card.Group>
     )
   }
 }
