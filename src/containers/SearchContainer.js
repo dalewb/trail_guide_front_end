@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SearchForm from '../components/SearchForm'
 import Item from '../components/Item'
 import { connect } from 'react-redux';
+import { Grid } from 'semantic-ui-react'
+import { Search as SearchForm } from 'semantic-ui-react';
 
 class Search extends Component {
   constructor() {
@@ -135,11 +137,17 @@ class Search extends Component {
       <div>
         <h3>Search for Items!</h3>
         {this.state.requestItem !== null ? this.renderRequestForm() : null}
-        <SearchForm
+        <Search
           handleSearchChange={this.handleSearchChange}
           handleSearchSubmit={this.handleSearchSubmit}
         />
-      {this.state.itemList.length > 0 && this.state.requestItem === null ? this.renderItems() : null}
+      <Grid>
+          <Grid.Row columns={3}>
+            <Grid.Column>
+              {this.state.itemList && this.state.requestItem === null ? this.renderItems() : null}
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
     </div>
     )
   }

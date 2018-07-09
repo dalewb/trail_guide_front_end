@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from 'react-router-dom';
 import './App.css';
 import Button from '@material-ui/core/Button';
-import Search from './containers/Search';
+import SearchContainer from './containers/SearchContainer';
 import UserPosts from './containers/UserPosts';
 import LoginContainer from './containers/LoginContainer';
 import RegistrationForm from './components/RegistrationForm';
@@ -13,50 +13,6 @@ import HomeContainer from './containers/HomeContainer';
 import { connect } from 'react-redux';
 
 class App extends Component {
-  // state = {
-  //   allLocations: [],
-  //   allCommodities: [],
-  //   userLocations: [],
-  //   userCommodities: [],
-  //   user: {},
-  //   loading: false,
-  //   error: null,
-  // }
-
-  // componentDidMount() {
-  //   this.fetchAllInfo()
-  // }
-
-  // fetchAllInfo = () => {
-  //   this.fetchBookings()
-  //   this.fetchPosts()
-  // }
-
-  // fetchUser = () => {
-  //   fetch(`http://localhost:3000/api/v1/users/${user.id}`)
-  //   .then(res => res.json())
-  //   .then(json => this.setState({
-  //     user: json.data
-  //   }))
-  // }
-  //
-  // search user by username once entered, match password, get all info.
-
-  // fetchBookings = () => {
-  //   fetch(`http://localhost:3000/api/v1/${1}/bookings/`)
-  //   .then(res => res.json())
-  //   .then(json => this.setState({
-  //     userLocations: json
-  //   }))
-  // }
-  //
-  // fetchPosts = () => {
-  //   fetch(`http://localhost:3000/api/v1/${1}/posts/`)
-  //   .then(res => res.json())
-  //   .then(json => this.setState({
-  //     userCommodities: json
-  //   }))
-  // }
 
   render() {
     return (
@@ -111,7 +67,7 @@ class App extends Component {
           <Route path="/login" component={LoginContainer}/>
           <Route path="/register" component={RegistrationForm}/>
           <Route path="/posts" component={UserPosts}/>
-          <Route path="/search" component={Search}/>
+          <Route path="/search" component={SearchContainer}/>
           <Route path="/create_commodity" component={CreateCommodity}/>
           <Route path="/locations" component={LocationContainer}/>
         </div>
