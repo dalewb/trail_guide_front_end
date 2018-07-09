@@ -66,16 +66,25 @@ class MapContainer extends Component {
   render() {
     return (
       // Important! Always set the container height explicitly
-      <Map
-        google={this.props.google}
-        center={this.currentPosition()}
-        zoom={14}
-      >
-        <Marker onClick={this.onMarkerClick}
-                name={'Current location'} />
-
-
-      </Map>
+      <div>
+        <Map
+          google={this.props.google}
+          center={this.currentPosition()}
+          zoom={14}
+          style={{
+            height: 350,
+            width: '100%',
+            display: 'flex',
+            flexFlow: 'row nowrap',
+            justifyContent: 'center',
+            padding: 0
+          }}
+        >
+          <Marker onClick={this.onMarkerClick}
+                  name={'Current location'} />
+        </Map>
+        <p>Some shit can go down here too!</p>
+      </div>
     );
   }
 }
