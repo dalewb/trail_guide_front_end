@@ -7,6 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import postReducer from './reduxComponents/postReducer';
 import bookingReducer from './reduxComponents/bookingReducer';
+import loginReducer from './reduxComponents/loginReducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 
@@ -16,6 +17,7 @@ const store = createStore(
   combineReducers({
     postReducer,
     bookingReducer,
+    loginReducer,
   }),
   applyMiddleware(thunk),
 )

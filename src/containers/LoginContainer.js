@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 class LoginContainer extends Component {
   state = {
     allUsernames: [],
+    allUsers: [],
     userInfo: '',
   }
 
@@ -12,23 +13,23 @@ class LoginContainer extends Component {
     fetch(`http://localhost:3000/api/v1/users`)
       .then(res => res.json())
       .then(json => this.setState({
-        allUsernames: json
+        allUsers: json
       }))
   }
 
   findUser = (info) => {
-
+    let user = this.state.allUsers.find(user => user.username === info.username)
+    debugger
   }
 
   render() {
     return (
-      <LoginForm />
+      <LoginForm findUser={this.findUser}/>
     )
   }
 }
 
 function mapStateToProps(state) {
-  debugger
   return {
     user: '',
   }
