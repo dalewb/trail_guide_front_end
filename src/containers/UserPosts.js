@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Post from '../components/Post';
 import { connect } from 'react-redux';
-import {fetchPosts} from '../reduxComponents/postActions';
+import { fetchPosts, deletePost } from '../reduxComponents/postActions';
 
 class UserPosts extends Component {
 
   componentDidMount() {
-
     this.props.dispatch(fetchPosts())
   }
 
@@ -28,14 +27,8 @@ class UserPosts extends Component {
   }
 
   handleDeletePost = (deleteId) => {
-    fetch(`http://localhost:3000/api/v1/posts/${deleteId}`, {
-      method: 'delete',
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(data => {this.getPosts()})
+    this.props.dispatch(deletePost(deleteId))
+    .then(res => this.props.dispatch(fetchPosts()))
   }
 
   render() {
@@ -52,7 +45,7 @@ class UserPosts extends Component {
     return (
       <div>
         <h3>Your Requests!</h3>
-        {userCommodities.length > 0 ? this.renderUserPosts() : null}
+        {userCommodities ? this.renderUserPosts() : null}
       </div>
     )
   }
@@ -60,9 +53,9 @@ class UserPosts extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("mapStateToProps", state);
+  console.log("Posts mapStateToProps, state is: ", state);
   return {
-    userCommodities: state.userCommodities,
+    userCommodities: state.postReducer.userCommodities,
     loading: state.loading,
     error: state.error,
     renderLocations: false,

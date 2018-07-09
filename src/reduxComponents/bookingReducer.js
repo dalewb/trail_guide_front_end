@@ -28,10 +28,13 @@ export default function bookingReducer(state = initialState, action) {
     case FETCH_BOOKINGS_SUCCESS:
       // All done: set loading "false".
       // Also, replace the bookings with the ones from the server
+      console.log("FETCH_BOOKING_SUCCESS in bookingReducer hit.");
+      console.log("action is: ", action);
+      console.log("--------------------");
       return {
         ...state,
         loading: false,
-        userLocations: action.payload.bookings,
+        userLocations: action.payload.bookings.places,
       };
 
     case FETCH_BOOKINGS_FAILURE:

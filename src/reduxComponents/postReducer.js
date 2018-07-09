@@ -1,15 +1,13 @@
 import {
   FETCH_POSTS_BEGIN,
   FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_FAILURE
+  FETCH_POSTS_FAILURE,
+  DELETE_POST
 } from './postActions';
 
 const initialState = {
-  allLocations: [],
   allCommodities: [],
-  userLocations: [],
   userCommodities: [],
-  user: {},
   loading: false,
   error: null,
 };
@@ -45,6 +43,12 @@ export default function postReducer(state = initialState, action) {
         loading: false,
         error: action.payload.error,
       };
+
+      case DELETE_POST:
+
+      return {
+        ...state
+      }
 
     default:
       // ALWAYS have a default case in a reducer

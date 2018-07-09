@@ -1,6 +1,7 @@
 export const FETCH_POSTS_BEGIN   = 'FETCH_POSTS_BEGIN';
 export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
+export const DELETE_POST = 'DELETE_POST';
 
 export const fetchPostsBegin = () => ({
   type: FETCH_POSTS_BEGIN
@@ -16,6 +17,10 @@ export const fetchPostsFailure = error => ({
   payload: { error }
 });
 
+export const postDeleted = () => ({
+  type: DELETE_POST
+})
+
 export function fetchPosts() {
   console.log("Inside Fetch Posts")
   return dispatch => {
@@ -29,6 +34,22 @@ export function fetchPosts() {
       })
       .catch(error => dispatch(fetchPostsFailure(error)));
   };
+}
+
+export function deletePost(deleteId) {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/posts/${deleteId}`, {
+      method: 'delete',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(json => {
+        dispatch(postDeleted())
+        return json
+      })
+  }
 }
 
 // Handle HTTP errors since fetch won't.

@@ -107,7 +107,8 @@ class LocationContainer extends Component {
   }
 
   renderLocations = () => {
-    return this.state.locations.map(location => {
+    console.log("inside render locations",this.props);
+    return this.props.userlocations.map(location => {
       return (
         <Location
           info={location}
@@ -158,15 +159,25 @@ class LocationContainer extends Component {
     return (
       <div>
         <LocationByTown
-          addToLocations={this.addToLocations}
+          renderLocations={this.renderLocations}
         /><br />
       <button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
         {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
-        {this.state.locations.length > 0 ? this.renderLocations() : null}
+        {this.props.userLocations ? this.renderLocations() : null}
       </div>
     )
   }
 }
 
-export default connect()(LocationContainer);
+function mapStateToProps(state) {
+  console.log("In mapStateToProps in LocationContainer, state is: ", state );
+  return {
+    userLocations: state.bookingReducer.userLocations,
+    loading: state.loading,
+    error: state.error,
+    renderLocations: false,
+  }
+}
+
+export default connect(mapStateToProps)(LocationContainer);

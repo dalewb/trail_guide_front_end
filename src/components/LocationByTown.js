@@ -24,6 +24,7 @@ class LocationByTown extends Component {
     let searchState = this.state.state.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
     console.log("Inside location search submit, props are: ", this.props);
     this.props.dispatch(fetchBookings(searchCity, searchState))
+    .then(res => this.props.renderLocations())
     // fetch(`https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=${searchCity}&q[state_cont]=${searchState}&radius=25`, {
     //   method: 'get',
     //   headers: {
@@ -51,6 +52,10 @@ class LocationByTown extends Component {
       </form>
     )
   }
+}
+
+function mapStateToProps(state) {
+
 }
 
 export default connect()(LocationByTown);

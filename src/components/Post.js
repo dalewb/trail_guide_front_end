@@ -22,11 +22,11 @@ class Post extends Component {
     } else {
       date_needed = this.props.info.date_needed
     }
-
+    
     return (
       <div>
         <p>Post</p>
-        <p>Item: {this.props.commodity_name}</p>
+        <p>Item: {this.props.info.commodity_name}</p>
         <p>Date Posted: {this.props.info.date_posted}</p>
         <p>Date Needed: {date_needed}</p>
         <p>Trail Name: Need to connect user props</p>
