@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from '../components/Post';
 import { connect } from 'react-redux';
 import { fetchPosts, deletePost } from '../reduxComponents/postActions';
+import { Card, Button, Grid } from 'semantic-ui-react';
 
 class UserPosts extends Component {
 
@@ -46,7 +47,9 @@ class UserPosts extends Component {
     return (
       <div>
         <h3>Your Requests!</h3>
+        <Grid padded columns={4}>
         {userCommodities ? this.renderUserPosts() : null}
+        </Grid>
       </div>
     )
   }

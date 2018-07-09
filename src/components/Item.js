@@ -1,5 +1,7 @@
 import React from 'react';
-import { Card, Image, Button } from 'semantic-ui-react'
+import { Card, Image, Button, Grid } from 'semantic-ui-react';
+import RequestForm from './RequestForm';
+import { Popup } from 'semantic-ui-react';
 // import { withStyles } from '@material-ui/core/styles';
 // import Card from '@material-ui/core/Card';
 // import CardActions from '@material-ui/core/CardActions';
@@ -11,6 +13,7 @@ import { connect } from 'react-redux';
 
 function Item(props) {
   return (
+    <Grid.Column>
     <Card>
       <Image src={props.info.largeImage} />
         <Card.Content>
@@ -21,11 +24,14 @@ function Item(props) {
           <Button onClick={props.handleItemPurchase}>
             Buy Item
           </Button>
-          <Button onClick={() => props.handleRequestClick(props.info)}>
-            Create a Request
-          </Button>
+          <Popup
+            trigger={<Button content="Create Request" />}
+            content={<RequestForm handleRequestSubmit={props.handleRequestSubmit}/>}
+            on='click'
+          />
         </Card.Content>
     </Card>
+  </Grid.Column>
   );
 }
 

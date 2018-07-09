@@ -1,41 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Card, Image, Button, Grid } from 'semantic-ui-react';
 // import Card from '../material-kit-react-v1.1.0/src/components/Card/Card'
 
 class Post extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   debugger
-  //   this.state = {
-  //     commodityName: props.info.commodity_name,
-  //     username: props.info.user.username,
-  //     user_type: props.info.user.user_type,
-  //     gender: props.info.user.gender,
-  //     start_date: props.info.user.start_date,
-  //   }
-  // }
 
   renderPost = () => {
     let date_needed = ''
+    let img_url = ''
     if (!this.props.info.date_needed) {
       date_needed = "Not Provided"
     } else {
       date_needed = this.props.info.date_needed
     }
 
+    if (!this.props.info.img_url) {
+      img_url = 'https://img.etsystatic.com/il/d0524c/1457330456/il_340x270.1457330456_izda.jpg?version=0'
+    } else {
+      img_url = this.props.info.img_url
+    }
+
     return (
-      <div>
-        <p>Post</p>
-        <p>Item: {this.props.info.commodity_name}</p>
-        <p>Date Posted: {this.props.info.date_posted}</p>
-        <p>Date Needed: {date_needed}</p>
-        <p>Trail Name: {this.props.user.username}</p>
-        <p>Type: {this.props.user.user_type}</p>
-        <p>Gender: {this.props.user.gender}</p>
-        <p>Start Date: {this.props.user.start_date}</p>
-        <button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</button>
-        <button onClick={() => this.props.addLocationToPost(this.props.info.id)}>Add To Location</button>
-      </div>
+      <Grid.Column>
+        <Card>
+          <Image src={img_url} />
+          <Card.Content>
+            <Card.Header>{this.props.info.commodity_name}</Card.Header>
+            <Card.Meta>Trail Name: {this.props.user.username}</Card.Meta>
+            <Card.Meta>Date Posted: {this.props.info.date_posted}</Card.Meta>
+            <Card.Meta>Date Needed: {date_needed}</Card.Meta>
+            <Card.Meta>Type: {this.props.user.user_type}</Card.Meta>
+            <Card.Meta>Gender: {this.props.user.gender}</Card.Meta>
+            <Card.Meta>Start Date: {this.props.user.start_date}</Card.Meta>
+            <Button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</Button>
+            <Button onClick={() => this.props.addLocationToPost(this.props.info.id)}>Add To Location</Button>
+          </Card.Content>
+        </Card>
+      </Grid.Column>
     )
   }
 

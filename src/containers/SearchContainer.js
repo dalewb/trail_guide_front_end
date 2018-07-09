@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import SearchForm from '../components/SearchForm'
 import Item from '../components/Item'
+import RequestForm from '../components/RequestForm'
 import { connect } from 'react-redux';
-import { Grid } from 'semantic-ui-react'
-import { Search as SearchForm } from 'semantic-ui-react';
+import { Grid, Input, Button, Popup } from 'semantic-ui-react'
 
-class Search extends Component {
+class SearchContainer extends Component {
   constructor() {
     super()
 
@@ -47,6 +47,7 @@ class Search extends Component {
   }
 
   createNewItem = () => {
+    console.log("Inside CreateNewItem, this.state is: ", this.state);
     fetch("http://localhost:3000/api/v1/commodities", {
   		method: "POST",
   		headers: {
@@ -65,6 +66,7 @@ class Search extends Component {
 
   handleRequestSubmit = (e) => {
     e.preventDefault()
+    debugger
     this.setState({
       requestDate: e.target.date_needed.value,
       requestPriority: e.target.priority.value,
@@ -73,21 +75,13 @@ class Search extends Component {
 
   renderRequestForm = () => {
     return (
-      <form onSubmit={this.handleRequestSubmit}>
-        <label>
-          Date Needed:
-          <input type="text" id="date_needed"></input>
-        </label>
-        <label>
-          Priority Level:
-          <input type="text" id="priority"></input>
-        </label>
-        <input type="submit" value="Submit"></input>
-      </form>
+      <Popup trigger={<Button content="Create Request" />}
+        content={<RequestForm handleRequestSubmit={this.handleRequestSubmit}/>}
+      />
     )
   }
 
-  handleRequestClick= (item) => {
+  handleRequestClick = (item) => {
     this.setState({
       requestItem: item
     })
@@ -101,6 +95,7 @@ class Search extends Component {
           key={item.itemId}
           handleItemPurchase={this.handleItemPurchase}
           handleRequestClick={this.handleRequestClick}
+          handleRequestSubmit={this.handleRequestSubmit}
         />
       )
     })
@@ -136,22 +131,19 @@ class Search extends Component {
     return (
       <div>
         <h3>Search for Items!</h3>
-        {this.state.requestItem !== null ? this.renderRequestForm() : null}
-        <Search
-          handleSearchChange={this.handleSearchChange}
-          handleSearchSubmit={this.handleSearchSubmit}
+        {/*this.state.requestItem !== null ? this.renderRequestForm() : null*/}
+        <Input
+          onChange={this.handleSearchChange}
         />
-      <Grid>
-          <Grid.Row columns={3}>
-            <Grid.Column>
-              {this.state.itemList && this.state.requestItem === null ? this.renderItems() : null}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+      <Button onClick={this.handleSearchSubmit} content="Search"/>
+
+      <Grid padded columns={4}>
+          {this.state.itemList && this.state.requestItem === null ? this.renderItems() : null}
+      </Grid>
     </div>
     )
   }
 
 };
 
-export default connect()(Search);
+export default connect()(SearchContainer);
