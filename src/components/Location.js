@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import { Imge, Item, Button } from 'semantic-ui-react';
+// import { withStyles } from '@material-ui/core/styles';
+// import Card from '@material-ui/core/Card';
+// import CardActions from '@material-ui/core/CardActions';
+// import CardContent from '@material-ui/core/CardContent';
+// import CardMedia from '@material-ui/core/CardMedia';
+// import Button from '@material-ui/core/Button';
+// import Typography from '@material-ui/core/Typography';
+// import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -33,49 +34,36 @@ function Location(props) {
     desc = props.info.description
   }
 
-  const { classes } = props;
   return (
-    <Grid container className={classes.root} spacing={16}>
-      <Grid item xs={12}>
-      <Card className={classes.card}>
-        <CardMedia
-          className={classes.media}
-          title={props.info.name}
-          image="https://images-na.ssl-images-amazon.com/images/I/417KqQE9s0L.jpg"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="headline" component="h2">
+    <Item.Group>
+      <Item padded>
+        {/*<Item.Image size='medium' src="https://images-na.ssl-images-amazon.com/images/I/417KqQE9s0L.jpg"/>*/}
+        <Item.Content>
+          <Item.Header as="h2">
             {props.info.name}
-          </Typography>
-          <Typography component="p">
+          </Item.Header>
+          <Item.Meta>
             {props.info.city}
-          </Typography>
-          <Typography component="p">
+          </Item.Meta>
+          <Item.Meta>
             {props.info.state}
-          </Typography>
-          <Typography component="p">
+          </Item.Meta>
+          <Item.Meta>
             Latitude: {props.info.lat}
-          </Typography>
-          <Typography component="p">
+          </Item.Meta>
+          <Item.Meta>
             Latitude: {props.info.lon}
-          </Typography>
-          <Typography component="p">
+          </Item.Meta>
+          <Item.Description>
             Description: {desc}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small" color="primary" onClick={() => props.handleLocationClick(props.info)}>
+          </Item.Description>
+          <Button size="small" color="#a2bfb0" onClick={() => props.handleLocationClick(props.info)}>
             Add to Your Locations
           </Button>
-        </CardActions>
-      </Card>
-      </Grid>
-    </Grid>
+        </Item.Content>
+      </Item>
+    </Item.Group>
   );
 }
 
-Location.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default connect()(withStyles(styles)(Location));
+export default connect()(Location);

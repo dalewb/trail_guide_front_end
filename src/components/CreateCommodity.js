@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Form, Button, Card } from 'semantic-ui-react';
 
 class CreateCommodity extends Component {
   constructor() {
@@ -59,7 +60,7 @@ class CreateCommodity extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <h3>Create Custom Commodity!</h3><br />
         <label>
           Commodity Name:
@@ -81,7 +82,7 @@ class CreateCommodity extends Component {
           </label><br />
           <input type="submit"></input>
         </div>
-      </form>
+      </Form>
     )
   }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Form, Button, Card } from 'semantic-ui-react';
 
 class RegistrationForm extends Component {
   constructor() {
@@ -48,36 +49,30 @@ class RegistrationForm extends Component {
 
   render() {
     return (
-      <div>
+      <Card.Group centered>
+      <Form onSubmit={this.handleRegistrationSubmit}>
         <h3>Register!</h3>
-        <form onSubmit={this.handleRegistrationSubmit}><br />
-          <label>
-            Username:
-            <input type="text" name="username" onChange={this.handleChange}/>
-          </label><br />
-          <label>
-            User Type:
-            <input type="text" name="userType" onChange={this.handleChange}/>
-          </label><br />
-          <label>
-            Gender
-            <input type="text" name="gender" onChange={this.handleChange}/>
-          </label><br />
-          <label>
-            Start Date
-            <input type="text" name="startDate" onChange={this.handleChange}/>
-          </label><br />
-          <label>
-            Password:
-            <input type="password" name="password" onChange={this.handleChange}/>
-          </label><br />
-          <label>
-            Confirm Password:
-            <input type="password" name="confirmPassword" onChange={this.handleChange}/>
-          </label><br />
-          <button type="submit" value="Submit">Submit</button>
-        </form>
-      </div>
+          <Form.Field>
+            <input type="text" name="username" label="Username" placeholder="Username" onChange={this.handleChange}/>
+          </Form.Field>
+          <Form.Field>
+            <input type="text" name="userType" label="User Type" placeholder="User Type" onChange={this.handleChange}/>
+          </Form.Field>
+          <Form.Field>
+            <input type="text" name="gender" label="Gender" placeholder="Gender" onChange={this.handleChange}/>
+          </Form.Field>
+          <Form.Field>
+            <input type="text" name="startDate" label="Start Date" placeholder="Start Date" onChange={this.handleChange}/>
+          </Form.Field>
+          <Form.Field>
+            <input type="password" name="password" label="Password" placeholder="Password" onChange={this.handleChange}/>
+          </Form.Field>
+          <Form.Field>
+            <input type="password" name="confirmPassword" label="Confirm Password" placeholder="Confirm Password" onChange={this.handleChange}/>
+          </Form.Field>
+        <Button type="submit" value="Submit">Submit</Button>
+      </Form>
+      </Card.Group>
     )
   }
 }

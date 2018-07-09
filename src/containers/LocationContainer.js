@@ -161,7 +161,7 @@ class LocationContainer extends Component {
         <LocationByTown
           renderLocations={this.renderLocations}
         /><br />
-      <button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</button>
+        <button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
         {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
         {this.props.userLocations ? this.renderLocations() : null}
