@@ -1,9 +1,9 @@
-import {
-  FETCH_POSTS_BEGIN,
-  FETCH_POSTS_SUCCESS,
-  FETCH_POSTS_FAILURE,
-  DELETE_POST
-} from './postActions';
+// import {
+//   FETCH_POSTS_BEGIN,
+//   FETCH_POSTS_SUCCESS,
+//   FETCH_POSTS_FAILURE,
+//   DELETE_POST
+// } from './postActions';
 
 const initialState = {
   allCommodities: [],
@@ -14,7 +14,7 @@ const initialState = {
 
 export default function postReducer(state = initialState, action) {
   switch(action.type) {
-    case FETCH_POSTS_BEGIN:
+    case "FETCH_POSTS_BEGIN":
       // Mark the state as "loading" so we can show a spinner or something
       // Also, reset any errors. We're starting fresh.
       return {
@@ -23,16 +23,16 @@ export default function postReducer(state = initialState, action) {
         error: null,
       };
 
-    case FETCH_POSTS_SUCCESS:
+    case "FETCH_POSTS":
       // All done: set loading "false".
       // Also, replace the posts with the ones from the server
       return {
         ...state,
-        loading: false,
-        userCommodities: action.payload.posts,
+        // loading: false,
+        userCommodities: action.payload
       };
 
-    case FETCH_POSTS_FAILURE:
+    case "FETCH_POSTS_FAILURE":
       // The request failed, but it did stop, so set loading to "false".
       // Save the error, and we can display it somewhere
       // Since it failed, we don't have posts to display anymore, so set it empty.
@@ -44,7 +44,7 @@ export default function postReducer(state = initialState, action) {
         error: action.payload.error,
       };
 
-      case DELETE_POST:
+    case "DELETE_POST":
 
       return {
         ...state

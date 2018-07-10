@@ -17,10 +17,10 @@ class App extends Component {
 
   render() {
     return (
-      <div class='App'>
+      <div className='App'>
         <Header as="h2" icon textAlign='center'>
           {/*<img src="https://images-na.ssl-images-amazon.com/images/I/412G%2B3Q49RL.jpg" className="App-logo" alt="logo" />*/}
-          <Header as='h2' icon>
+          <Header icon>
             <Icon name='map signs' size="small"/>
             Trail Angels
             <Header.Subheader><br />Linking Hikers with Angels, Wherever They May Roam.</Header.Subheader>

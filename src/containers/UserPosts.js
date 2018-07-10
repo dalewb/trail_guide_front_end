@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Post from '../components/Post';
+import LocationToPost from '../components/LocationToPost';
 import { connect } from 'react-redux';
 import { fetchPosts, deletePost } from '../reduxComponents/postActions';
 import { Card, Button, Grid } from 'semantic-ui-react';
@@ -8,7 +9,7 @@ class UserPosts extends Component {
 
   componentDidMount() {
     console.log("userPosts before debugger, props are: ",this.props);
-    this.props.dispatch(fetchPosts())
+    this.props.fetchPosts()
   }
 
   addLocationToPost = () => {
@@ -50,6 +51,7 @@ class UserPosts extends Component {
         <Grid padded columns={4}>
         {userCommodities ? this.renderUserPosts() : null}
         </Grid>
+        <LocationToPost />
       </div>
     )
   }
@@ -67,12 +69,11 @@ function mapStateToProps(state) {
   }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     fetchPosts: () => {
-//       dispatch({type: "FETCH_POSTS_BEGIN"})
-//     }
-//   }
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchPosts: () => dispatch(fetchPosts())
+    // fetchPosts: bindActionCreators(fetchPosts, dispatch)
+  }
+}
 
-export default connect(mapStateToProps)(UserPosts);
+export default connect(mapStateToProps, mapDispatchToProps)(UserPosts);
