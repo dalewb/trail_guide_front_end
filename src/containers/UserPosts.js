@@ -4,6 +4,7 @@ import LocationToPost from '../components/LocationToPost';
 import { connect } from 'react-redux';
 import { fetchPosts, deletePost } from '../reduxComponents/postActions';
 import { Card, Button, Grid } from 'semantic-ui-react';
+// import { bindActionCreators } from 'redux'
 
 class UserPosts extends Component {
 
