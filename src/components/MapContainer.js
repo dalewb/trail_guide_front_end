@@ -3,7 +3,7 @@ import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 let options = {
   enableHighAccuracy: true,
-  timeout: 5000,
+  timeout: 15000,
   maximumAge: 0
 };
 

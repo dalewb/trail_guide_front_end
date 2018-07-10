@@ -79,7 +79,6 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchPosts: () => dispatch(fetchPosts()),
     deletePost: (deleteId) => dispatch(deletePost(deleteId))
-    // fetchPosts: bindActionCreators(fetchPosts, dispatch)
   }
 }
 

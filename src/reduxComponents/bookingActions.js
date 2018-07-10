@@ -19,7 +19,6 @@ export const fetchBookingsFailure = error => ({
 export function fetchBookings(city, state) {
   console.log("Inside Fetch Bookings")
   return dispatch => {
-    // dispatch(fetchBookingsBegin());
     return fetch(`https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=${city}&q[state_cont]=${state}&radius=25`, {
       method: 'get',
       headers: {
@@ -32,6 +31,17 @@ export function fetchBookings(city, state) {
         dispatch({ type: "FETCH_BOOKINGS", payload: json });
       })
   };
+}
+
+export function fetchUserBookings() {
+  console.log("In fetchUserBookings in bookingActions")
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/1/bookings")
+      .then(res => res.json())
+      .then(json => {
+        dispatch({ type: "FETCH_USER_BOOKINGS", payload: json})
+      })
+  }
 }
 
 // Handle HTTP errors since fetch won't.

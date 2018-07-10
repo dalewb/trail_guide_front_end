@@ -5,7 +5,6 @@ import MyLocation from '../components/MyLocation'
 class MyLocationContainer extends Component {
 
   render() {
-    debugger
     return (
       <p>My Location Container</p>
     )

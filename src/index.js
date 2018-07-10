@@ -16,8 +16,8 @@ import thunk from 'redux-thunk';
 const store = createStore(
   combineReducers({
     postReducer,
-    bookingReducer,
     loginReducer,
+    bookingReducer,
   }),
   applyMiddleware(thunk),
 )

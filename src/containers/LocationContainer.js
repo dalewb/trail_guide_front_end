@@ -122,8 +122,7 @@ class LocationContainer extends Component {
 
   renderMyLocations = () => {
     return (
-    <Grid>
-    {this.state.myLocations.map(location => {
+    this.state.myLocations.map(location => {
       return (
         <MyLocation
           info={location}
@@ -133,8 +132,7 @@ class LocationContainer extends Component {
           handleDeleteLocationClick={this.handleDeleteLocationClick}
         />
       )
-    })}
-    </Grid>
+    })
   )
   }
 

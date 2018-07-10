@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Image, Button, Grid, Card } from 'semantic-ui-react';
+import { Form, Image, Button, Grid, Card, Popup } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -26,6 +26,10 @@ function Location(props) {
     desc = props.info.desc
   }
 
+  function renderAssociatedItems() {
+
+  }
+
   const { classes } = props;
   return (
     <Grid.Column>
@@ -42,6 +46,11 @@ function Location(props) {
           <Card.Meta>Arrival Date: {props.info.date}</Card.Meta>
           <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
         </Card.Content>
+        <Popup trigger={<Button icon='add'>Show Requested Items</Button>}>
+          <Grid centered divided columns={3}>
+            {renderAssociatedItems()}
+          </Grid>
+        </Popup>
         <Button onClick={() => props.handleDeleteLocationClick(props.info)}>
           Remove From Your Locations
         </Button>
@@ -49,9 +58,5 @@ function Location(props) {
     </Grid.Column>
   );
 }
-
-Location.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
 export default connect()(Location);

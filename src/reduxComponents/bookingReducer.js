@@ -5,6 +5,7 @@ const initialState = {
   allLocations: [],
   userCommodities: [],
   userLocations: [],
+  userBookings: [],
   user: {},
   loading: false,
   error: null,
@@ -18,9 +19,16 @@ export default function bookingReducer(state = initialState, action) {
       console.log("--------------------");
       return {
         ...state,
-        loading: false,
         userLocations: action.payload.places,
       };
+
+    case "FETCH_USER_BOOKINGS":
+      console.log("In FETCH_USER_BOOKINGS, action is: ", action);
+      console.log("In FETCH_USER_BOOKINGS, state is: ", state);
+      return {
+        ...state,
+        userBookings: action.payload.data
+      }
 
     default:
       return state;
