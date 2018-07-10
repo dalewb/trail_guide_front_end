@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {fetchBookings} from '../reduxComponents/bookingActions';
+import { Form, Button, Card } from 'semantic-ui-react';
 
 class LocationByTown extends Component {
     state = {
@@ -25,31 +26,24 @@ class LocationByTown extends Component {
     console.log("Inside location search submit, props are: ", this.props);
     this.props.dispatch(fetchBookings(searchCity, searchState))
     .then(res => this.props.renderLocations())
-    // fetch(`https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=${searchCity}&q[state_cont]=${searchState}&radius=25`, {
-    //   method: 'get',
-    //   headers: {
-    //     'X-Mashape-Key': 'x78qgG0HjVmshFnNVySkv4C0uBffp1B5UsfjsnDU67H0VVAOmg',
-    //     'Accept': 'application/json'
-    //   },
-    // })
-    //   .then(res => res.json())
-    //   .then(json => {this.props.addToLocations(json.places)})
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>Find a Location!</h3>
-        <label>
-          City:
-          <input type="text" name="city" onChange={this.handleChange}></input>
-        </label>
-        <label>
-          State:
-          <input type="text" name="state" onChange={this.handleChange}></input>
-        </label>
-        <input type="submit" value="Submit"></input>
-      </form>
+      <Card.Group centered>
+        <Form onSubmit={this.handleSubmit}>
+          <h3>Find a Location!</h3>
+          <Form.Field>
+            <input type="text" name="city" label="City" placeholder="City" onChange={this.handleChange}></input>
+          </Form.Field>
+          <Form.Field>
+            <input type="text" name="state" label="State" placeholder="State" onChange={this.handleChange}></input>
+          </Form.Field>
+          <Form.Field>
+            <Button type="submit" value="Submit">Submit</Button>
+          </Form.Field>
+        </Form>
+      </Card.Group>
     )
   }
 }
