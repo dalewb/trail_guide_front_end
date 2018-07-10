@@ -19,7 +19,7 @@ export const fetchBookingsFailure = error => ({
 export function fetchBookings(city, state) {
   console.log("Inside Fetch Bookings")
   return dispatch => {
-    dispatch(fetchBookingsBegin());
+    // dispatch(fetchBookingsBegin());
     return fetch(`https://trailapi-trailapi.p.mashape.com/?limit=25&q[activities_activity_type_name_eq]=hiking&q[city_cont]=${city}&q[state_cont]=${state}&radius=25`, {
       method: 'get',
       headers: {
@@ -27,13 +27,10 @@ export function fetchBookings(city, state) {
         'Accept': 'application/json'
       },
     })
-      .then(res => handleErrors(res))
       .then(res => res.json())
       .then(json => {
-        dispatch(fetchBookingsSuccess(json));
-        return json;
+        dispatch({ type: "FETCH_BOOKINGS", payload: json });
       })
-      .catch(error => dispatch(fetchBookingsFailure(error)));
   };
 }
 

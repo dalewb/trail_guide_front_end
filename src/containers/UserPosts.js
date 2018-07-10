@@ -7,14 +7,19 @@ import { Card, Button, Grid } from 'semantic-ui-react';
 // import { bindActionCreators } from 'redux'
 
 class UserPosts extends Component {
+  state = {
+    locationToPostId: null,
+  }
 
   componentDidMount() {
     console.log("userPosts before debugger, props are: ",this.props);
     this.props.fetchPosts()
   }
 
-  addLocationToPost = () => {
-
+  addPostToLocation = (post_id) => {
+    this.setState({
+      locationToPostId: post_id,
+    })
   }
 
   renderUserPosts = () => {
@@ -24,7 +29,7 @@ class UserPosts extends Component {
           info={post}
           key={post.id}
           handleDeletePost={this.handleDeletePost}
-          addLocationToPost={this.addLocationToPost}
+          addPostToLocation={this.addPostToLocation}
         />
       )
     })
@@ -52,7 +57,7 @@ class UserPosts extends Component {
         <Grid padded columns={4}>
         {userCommodities ? this.renderUserPosts() : null}
         </Grid>
-        <LocationToPost />
+        { this.state.locationToPostId ? <LocationToPost postId={this.state.locationToPostId}/> : null}
       </div>
     )
   }

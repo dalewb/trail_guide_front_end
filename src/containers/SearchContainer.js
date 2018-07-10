@@ -66,7 +66,6 @@ class SearchContainer extends Component {
 
   handleRequestSubmit = (e) => {
     e.preventDefault()
-    debugger
     this.setState({
       requestDate: e.target.date_needed.value,
       requestPriority: e.target.priority.value,
