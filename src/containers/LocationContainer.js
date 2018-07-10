@@ -3,6 +3,7 @@ import LocationByTown from '../components/LocationByTown';
 import Location from '../components/Location';
 import MyLocation from '../components/MyLocation';
 import { connect } from 'react-redux';
+import { Button } from 'semantic-ui-react';
 
 class LocationContainer extends Component {
   constructor(props) {
@@ -161,7 +162,7 @@ class LocationContainer extends Component {
         <LocationByTown
           renderLocations={this.renderLocations}
         /><br />
-        <button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</button>
+      <Button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</Button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
         {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
         {this.props.userLocations ? this.renderLocations() : null}
