@@ -3,7 +3,7 @@ import LocationByTown from '../components/LocationByTown';
 import Location from '../components/Location';
 import MyLocation from '../components/MyLocation';
 import { connect } from 'react-redux';
-import { Button } from 'semantic-ui-react';
+import { Form, Card, Button, Grid } from 'semantic-ui-react';
 
 class LocationContainer extends Component {
   constructor(props) {
@@ -136,7 +136,7 @@ class LocationContainer extends Component {
 
   renderMyLocationForm = () => {
     return(
-      <form onSubmit={this.handleMyLocationFormSubmit}>
+      <Form onSubmit={this.handleMyLocationFormSubmit}>
         <label>
           Estimated Arrival Date
           <input type="text" name="date" onChange={this.handleMyLocationFormChange}></input>
@@ -146,7 +146,7 @@ class LocationContainer extends Component {
           <input type="text" name="time" onChange={this.handleMyLocationFormChange}></input>
         </label>
         <input type="submit" value="Submit" />
-      </form>
+      </Form>
     )
   }
 
@@ -164,7 +164,9 @@ class LocationContainer extends Component {
         /><br />
       <Button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</Button>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
-        {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
+        <Grid padded columns={4}>
+          {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
+        </Grid>
         {this.props.userLocations ? this.renderLocations() : null}
       </div>
     )
