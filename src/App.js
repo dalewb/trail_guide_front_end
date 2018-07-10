@@ -23,7 +23,7 @@ class App extends Component {
           <Header as='h2' icon>
             <Icon name='map signs' size="small"/>
             Trail Angels
-            <Header.Subheader>Linking Hikers with Angels, Wherever They May Roam.</Header.Subheader>
+            <Header.Subheader><br />Linking Hikers with Angels, Wherever They May Roam.</Header.Subheader>
           </Header>
           <Button size="small" color="primary">
             <Link to="/map">

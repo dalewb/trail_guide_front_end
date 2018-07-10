@@ -11,7 +11,7 @@ class UserPosts extends Component {
     this.props.dispatch(fetchPosts())
   }
 
-  AddLocationToPost = () => {
+  addLocationToPost = () => {
 
   }
 
@@ -22,7 +22,7 @@ class UserPosts extends Component {
           info={post}
           key={post.id}
           handleDeletePost={this.handleDeletePost}
-          AddLocationToPost={this.AddLocationToPost}
+          addLocationToPost={this.addLocationToPost}
         />
       )
     })
