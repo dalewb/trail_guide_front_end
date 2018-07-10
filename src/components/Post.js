@@ -19,7 +19,7 @@ class Post extends Component {
     } else {
       img_url = this.props.info.img_url
     }
-
+    console.log("Before debugger in render user post, this is: ", this);
     return (
       <Grid.Column>
         <Card>
