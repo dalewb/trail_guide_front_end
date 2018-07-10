@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import SearchForm from '../components/SearchForm'
-import Item from '../components/Item'
-import RequestForm from '../components/RequestForm'
+import SearchForm from '../components/SearchForm';
+import Item from '../components/Item';
+import RequestForm from '../components/RequestForm';
 import { connect } from 'react-redux';
-import { Grid, Input, Button, Popup } from 'semantic-ui-react'
+import { Grid, Input, Button, Popup } from 'semantic-ui-react';
 
 class SearchContainer extends Component {
   constructor() {
@@ -22,7 +22,7 @@ class SearchContainer extends Component {
     // redirect to CART?
   }
 
-  createRequest = (item) => {
+  createPost = (item) => {
     console.log("requestItem is initially", item);
     console.log("------");
     const currentDate = new Date()
@@ -61,7 +61,7 @@ class SearchContainer extends Component {
   		})
   	})
   		.then(res => res.json())
-  		.then(json => {this.createRequest(json.data)})
+  		.then(json => {this.createPost(json.data)})
     }
 
   handleRequestSubmit = (e) => {
