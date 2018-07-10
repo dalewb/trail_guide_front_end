@@ -88,4 +88,10 @@ class App extends Component {
   }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+
+  }
+}
+
 export default connect()(App);
