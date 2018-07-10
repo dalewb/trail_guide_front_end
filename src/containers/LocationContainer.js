@@ -135,18 +135,20 @@ class LocationContainer extends Component {
   }
 
   renderMyLocationForm = () => {
-    return(
-      <Form onSubmit={this.handleMyLocationFormSubmit}>
-        <label>
-          Estimated Arrival Date
-          <input type="text" name="date" onChange={this.handleMyLocationFormChange}></input>
-        </label>
-        <label>
-          Estimated Arrival Time
-          <input type="text" name="time" onChange={this.handleMyLocationFormChange}></input>
-        </label>
-        <input type="submit" value="Submit" />
-      </Form>
+    return (
+      <Card.Group centered>
+        <Form onSubmit={this.handleMyLocationFormSubmit}>
+          <Form.Field>
+            <input type="text" name="date" label="Estimated Arrival Date" placeholder="Estimated Arrival Date" onChange={this.handleMyLocationFormChange}></input>
+          </Form.Field>
+          <Form.Field>
+            <input type="text" name="time" label="Estimated Arrival Time" placeholder="Estimated Arrival Time" onChange={this.handleMyLocationFormChange}></input>
+          </Form.Field>
+          <Form.Field>
+            <Button type="submit" value="Submit">Submit</Button>
+          </Form.Field>
+        </Form>
+      </Card.Group>
     )
   }
 

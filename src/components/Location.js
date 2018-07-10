@@ -29,7 +29,7 @@ function Location(props) {
   return (
     <Item.Group>
       <Item padded>
-        {/*<Item.Image size='medium' src="https://images-na.ssl-images-amazon.com/images/I/417KqQE9s0L.jpg"/>*/}
+        <Item.Image size='small' src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg"/>
         <Item.Content>
           <Item.Header as="h2">
             {props.info.name}

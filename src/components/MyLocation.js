@@ -30,7 +30,7 @@ function Location(props) {
   return (
     <Grid.Column>
       <Card>
-        <Image src="https://images-na.ssl-images-amazon.com/images/I/417KqQE9s0L.jpg" />
+        <Image src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg" />
         <Card.Content>
           <Card.Header>{props.info.name}</Card.Header>
           <Card.Meta>{props.info.city}</Card.Meta>
