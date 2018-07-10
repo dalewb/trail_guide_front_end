@@ -36,8 +36,8 @@ class UserPosts extends Component {
   }
 
   handleDeletePost = (deleteId) => {
-    this.props.dispatch(deletePost(deleteId))
-    .then(res => this.props.dispatch(fetchPosts()))
+    this.props.deletePost(deleteId)
+    .then(res => this.props.fetchPosts())
   }
 
   render() {
@@ -77,7 +77,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchPosts: () => dispatch(fetchPosts())
+    fetchPosts: () => dispatch(fetchPosts()),
+    deletePost: (deleteId) => dispatch(deletePost(deleteId))
     // fetchPosts: bindActionCreators(fetchPosts, dispatch)
   }
 }

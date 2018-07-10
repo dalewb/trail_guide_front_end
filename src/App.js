@@ -10,6 +10,7 @@ import MapContainer from './components/MapContainer';
 import LocationContainer from './containers/LocationContainer';
 import CreateCommodity from './components/CreateCommodity';
 import HomeContainer from './containers/HomeContainer';
+import MyLocationContainer from './containers/MyLocationContainer';
 import { connect } from 'react-redux';
 import { Header, Icon } from 'semantic-ui-react';
 
@@ -51,6 +52,11 @@ class App extends Component {
             </Link>
           </Button>
           <Button size="small" color="primary">
+            <Link to="/myLocations">
+              View Your Locations
+            </Link>
+          </Button>
+          <Button size="small" color="primary">
             <Link to="/search">
               Search Items
             </Link>
@@ -75,6 +81,7 @@ class App extends Component {
           <Route path="/search" component={SearchContainer}/>
           <Route path="/create_commodity" component={CreateCommodity}/>
           <Route path="/locations" component={LocationContainer}/>
+          <Route path="/myLocations" component={MyLocationContainer}/>
         </div>
       </div>
     );

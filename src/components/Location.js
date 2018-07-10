@@ -1,22 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Imge, Item, Button } from 'semantic-ui-react';
+import { Image, Item, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-
-const styles = {
-  card: {
-    maxWidth: '300px',
-  },
-  root: {
-    display: "flex",
-    flexGrow: 1,
-    flexWrap: "wrap",
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-  },
-};
 
 function Location(props) {
   let desc = ""
@@ -28,7 +13,7 @@ function Location(props) {
 
   return (
     <Item.Group>
-      <Item padded>
+      <Item >
         <Item.Image size='small' src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg"/>
         <Item.Content>
           <Item.Header as="h2">
@@ -49,7 +34,7 @@ function Location(props) {
           <Item.Description>
             Description: {desc}
           </Item.Description>
-          <Button size="small" color="#a2bfb0" onClick={() => props.handleLocationClick(props.info)}>
+          <Button size="small" onClick={() => props.handleLocationClick(props.info)}>
             Add to Your Locations
           </Button>
         </Item.Content>
