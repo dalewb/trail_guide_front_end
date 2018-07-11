@@ -28,6 +28,7 @@ class LocationToPost extends Component {
       .then(this.setState({
         myLocations: null,
       }))
+      .then(console.log("addLocationToProps in LocationToPost, props are: ",this.props))
   }
 
   getUserLocations() {

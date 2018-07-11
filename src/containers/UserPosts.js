@@ -9,6 +9,7 @@ import { Card, Button, Grid } from 'semantic-ui-react';
 class UserPosts extends Component {
   state = {
     locationToPostId: null,
+    showPosts: true,
   }
 
   // componentDidMount() {
@@ -17,12 +18,18 @@ class UserPosts extends Component {
   //   this.props.fetchUserPosts()
   // }
 
+  toggleShowPosts = () => {
+    this.setState({
+      showPosts: !this.state.showPosts,
+    })
+  }
+
   addPostToLocation = (post_id) => {
     console.log("addPostToLocation inside UserPosts, this.props is: ",this.props);
     // this.props, find the post according to the post id, get it to render on the popup
     this.setState({
       locationToPostId: post_id,
-    })
+    }, () => this.toggleShowPosts())
   }
 
   renderUserPosts = () => {
@@ -36,6 +43,15 @@ class UserPosts extends Component {
         />
       )
     })
+  }
+
+  renderAddToLocations = () => {
+    return (
+      <LocationToPost
+        postId={this.state.locationToPostId}
+        toggleShowPosts={this.toggleShowPosts}
+      />
+    )
   }
 
   handleDeletePost = (deleteId) => {
@@ -57,10 +73,10 @@ class UserPosts extends Component {
     return (
       <div>
         <h3>Your Requests!</h3>
-        <Grid padded columns={4}>
-        {userCommodities ? this.renderUserPosts() : null}
-        </Grid>
         { this.state.locationToPostId ? <LocationToPost postId={this.state.locationToPostId}/> : null}
+        <Grid padded columns={4}>
+        {userCommodities && this.state.showPosts ? this.renderUserPosts() : null}
+        </Grid>
       </div>
     )
   }
