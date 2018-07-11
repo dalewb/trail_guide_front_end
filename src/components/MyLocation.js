@@ -1,4 +1,5 @@
 import React from 'react';
+import { fetchUserPosts } from '../reduxComponents/postActions'
 import PropTypes from 'prop-types';
 import { Form, Image, Button, Grid, Card, Popup } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -18,16 +19,17 @@ const styles = {
   },
 };
 
+function renderAssociatedItems() {
+  console.log("before fetch, renderAssociatedItems in MyLocation, props is :",props);
+  let posts = props.userPosts.filter(post => post.location_id === props.id)
+}
+
 function Location(props) {
   let desc = ""
   if (props.info.activities) {
     desc = props.info.activities[0].description
   } else if (props.info.description) {
     desc = props.info.desc
-  }
-
-  function renderAssociatedItems() {
-
   }
 
   return (
@@ -60,8 +62,15 @@ function Location(props) {
 
 function mapStateToProps(state) {
   return {
-    userBookings: state.bookingReducer.userBookings
+    userBookings: state.bookingReducer.userBookings,
+    userPosts: state.postReducer.userPosts,
   }
 }
 
-export default connect()(Location);
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchUserPosts: () => dispatch(fetchUserPosts())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Location);

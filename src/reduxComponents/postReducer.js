@@ -19,7 +19,7 @@ export default function postReducer(state = initialState, action) {
     case "FETCH_USER_POSTS":
       return {
         ...state,
-        userPosts: action.payload
+        userPosts: action.payload,
       }
 
     case "DELETE_POST":
