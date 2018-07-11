@@ -19,7 +19,8 @@ class LocationContainer extends Component {
       myLocationForm: false,
       toggleMyLocations: false,
       toggleLocations: true,
-      locationButtonText: 'Show'
+      locationButtonText: 'Show',
+      toggleLocationByTown: true,
     }
   }
 
@@ -32,6 +33,12 @@ class LocationContainer extends Component {
   toggleLocations = () => {
     this.setState({
       toggleLocations: !this.state.toggleLocations,
+    })
+  }
+
+  toggleLocationByTown = () => {
+    this.setState({
+      toggleLocationByTown: !this.state.toggleLocationByTown,
     })
   }
 
@@ -57,6 +64,7 @@ class LocationContainer extends Component {
         newLocationId: json.data.id,
         myLocationForm: true,
         toggleLocations: !this.state.toggleLocations,
+        toggleLocationByTown: !this.state.toggleLocationByTown,
       })
     })
   }
@@ -106,6 +114,7 @@ class LocationContainer extends Component {
         date: '',
         time: '',
         toggleLocations: !this.state.toggleLocations,
+        toggleLocationByTown: true,
       }, () => this.props.fetchUserBookings()))
   }
 
@@ -126,6 +135,14 @@ class LocationContainer extends Component {
         />
       )
     })
+  }
+
+  renderLocationByTown = () => {
+    return (
+      <LocationByTown
+        renderLocations={this.renderLocations}
+      />
+    )
   }
 
   renderMyLocations = () => {
@@ -171,10 +188,11 @@ class LocationContainer extends Component {
   render() {
     return (
       <div>
-        <LocationByTown
-          renderLocations={this.renderLocations}
-        /><br />
+        {this.state.toggleLocationByTown ? this.renderLocationByTown() : null}
+        <br />
       <Button onClick={this.handleMyLocationsClick}>Toggle My Locations</Button>
+        <p></p>
+        <p></p>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
         <Grid padded columns={4}>
           {this.props.userBookings.length > 0 && this.state.toggleMyLocations ? this.renderMyLocations() : null}

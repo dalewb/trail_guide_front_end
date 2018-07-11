@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Form, Card } from 'semantic-ui-react';
 
 function RequestForm(props) {
