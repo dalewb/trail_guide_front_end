@@ -21,10 +21,18 @@ const styles = {
 
 function MyLocation(props) {
   let desc = ""
+  let username = ""
+
   if (props.info.activities) {
     desc = props.info.activities[0].description
   } else if (props.info.description) {
     desc = props.info.desc
+  }
+
+  if (props.user) {
+    username = props.user.username
+  } else {
+    username = "Not Given"
   }
 
   function renderAssociatedItems() {
@@ -47,6 +55,8 @@ function MyLocation(props) {
     })
   }
 
+
+
   return (
     <Grid.Column>
       <Card>
@@ -58,7 +68,7 @@ function MyLocation(props) {
           <Card.Meta>Latitude: {props.info.lat}</Card.Meta>
           <Card.Meta>Longitude: {props.info.lon}</Card.Meta>
           <Card.Meta>Description: {desc}</Card.Meta>
-          <Card.Meta>User Id: {props.userId}</Card.Meta>
+          <Card.Meta>User Trail Name: {username}</Card.Meta>
           <Card.Meta>Arrival Date: {props.info.date}</Card.Meta>
           <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
         </Card.Content>
@@ -79,6 +89,7 @@ function mapStateToProps(state) {
   return {
     userBookings: state.bookingReducer.userBookings,
     userPosts: state.postReducer.userPosts,
+    user: state.loginReducer.user
   }
 }
 

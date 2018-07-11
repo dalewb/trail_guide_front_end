@@ -150,11 +150,12 @@ class LocationContainer extends Component {
   renderMyLocations = () => {
     return (
     this.props.userBookings.map(location => {
+      console.log(this.props);
       return (
         <MyLocation
           info={location}
           key={location.id}
-          userId="1"
+          user={this.props.user}
           id={location.id}
           handleDeleteLocationClick={this.handleDeleteLocationClick}
         />
@@ -206,13 +207,14 @@ class LocationContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("In mapStateToProps in LocationContainer, state.bookingReducer.userLocations is: ", state.bookingReducer.userLocations );
+  console.log("In mapStateToProps in LocationContainer, state is: ", state);
   return {
     allLocations: state.bookingReducer.allLocations,
     userBookings: state.bookingReducer.userBookings,
     loading: state.loading,
     error: state.error,
     renderLocations: false,
+    user: state.loginReducer.user
   }
 }
 

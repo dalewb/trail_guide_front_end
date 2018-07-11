@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Button, Card } from 'semantic-ui-react';
+import { Form, Button, Card, Icon, Label } from 'semantic-ui-react';
 
 class CreateCommodity extends Component {
   constructor() {
@@ -56,27 +56,30 @@ class CreateCommodity extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.createCommodity()
+    alert("Commodity Created")
   }
 
   render() {
     return (
-      <Card.Group centered>
-      <Form onSubmit={this.handleSubmit}>
-        <h3>Create Custom Commodity!</h3>
-          <Form.Field>
-          <input type="text" name="name" placeholder="Name" onChange={this.handleChange} />
-          </Form.Field>
-          <Form.Field>
-          <input type="text" name="date_needed" placeholder="Date Needed" onChange={this.handleChange} />
-          </Form.Field>
-          <Form.Group inline centered>
-            <label>Type: </label>
-            <Form.Radio label="Item"  name="type" value="item" onChange={this.handleChange} />
-            <Form.Radio label="Service"  name="type" value="service" onChange={this.handleChange} />
-          </Form.Group>
-          <Button type="submit" value="Submit">Submit</Button>
-      </Form>
+      <div>
+      <Card.Group centered="true">
+        <Form onSubmit={this.handleSubmit}>
+          <h3>Create Custom Commodity!</h3>
+            <Form.Field>
+            <input type="text" name="name" placeholder="Name" onChange={this.handleChange} />
+            </Form.Field>
+            <Form.Field>
+            <input type="text" name="date_needed" placeholder="Date Needed" onChange={this.handleChange} />
+            </Form.Field>
+            <Form.Group inline centered>
+              <label>Type: </label>
+              <Form.Radio label="Item"  name="type" value="item" onChange={this.handleChange} />
+              <Form.Radio label="Service"  name="type" value="service" onChange={this.handleChange} />
+            </Form.Group>
+            <Button type="submit" value="Submit">Submit</Button>
+        </Form>
       </Card.Group>
+      </div>
     )
   }
 }
