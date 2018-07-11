@@ -30,7 +30,6 @@ function Location(props) {
 
   }
 
-  const { classes } = props;
   return (
     <Grid.Column>
       <Card>
@@ -57,6 +56,12 @@ function Location(props) {
       </Card>
     </Grid.Column>
   );
+}
+
+function mapStateToProps(state) {
+  return {
+    userBookings: state.bookingReducer.userBookings
+  }
 }
 
 export default connect()(Location);

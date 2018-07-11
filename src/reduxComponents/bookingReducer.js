@@ -5,6 +5,7 @@ const initialState = {
   userCommodities: [],
   userLocations: [],
   userBookings: [],
+  userPosts: [],
   user: {},
   loading: false,
   error: null,

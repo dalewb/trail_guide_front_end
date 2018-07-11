@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Post from '../components/Post';
 import LocationToPost from '../components/LocationToPost';
 import { connect } from 'react-redux';
-import { fetchPosts, deletePost } from '../reduxComponents/postActions';
+import { fetchCommodities, deletePost } from '../reduxComponents/postActions';
 import { Card, Button, Grid } from 'semantic-ui-react';
 // import { bindActionCreators } from 'redux'
 
@@ -13,7 +13,7 @@ class UserPosts extends Component {
 
   componentDidMount() {
     console.log("userPosts before debugger, props are: ",this.props);
-    this.props.fetchPosts()
+    this.props.fetchCommodities()
   }
 
   addPostToLocation = (post_id) => {
@@ -37,7 +37,7 @@ class UserPosts extends Component {
 
   handleDeletePost = (deleteId) => {
     this.props.deletePost(deleteId)
-    .then(res => this.props.fetchPosts())
+    .then(res => this.props.fetchCommodities())
   }
 
   render() {
@@ -77,7 +77,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
+    fetchCommodities: () => dispatch(fetchCommodities()),
     deletePost: (deleteId) => dispatch(deletePost(deleteId))
   }
 }
