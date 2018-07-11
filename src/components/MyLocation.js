@@ -29,6 +29,7 @@ function MyLocation(props) {
 
   function renderAssociatedItems() {
     console.log("before fetch, renderAssociatedItems in MyLocation, props is :",props);
+
     let posts = props.userPosts.filter(post => post.location_id === props.id)
     return posts.map(post => {
       return (

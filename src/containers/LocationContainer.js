@@ -3,6 +3,7 @@ import LocationByTown from '../components/LocationByTown';
 import Location from '../components/Location';
 import MyLocation from '../components/MyLocation';
 import { fetchUserBookings } from '../reduxComponents/bookingActions'
+import { fetchUserPosts } from '../reduxComponents/postActions'
 import { connect } from 'react-redux';
 import { Form, Card, Button, Grid } from 'semantic-ui-react';
 
@@ -91,6 +92,7 @@ class LocationContainer extends Component {
       this.props.fetchUserBookings()
       this.toggleMyLocations()
     }
+    this.props.fetchUserPosts()
   }
 
   handleMyLocationFormSubmit = (e) => {
@@ -217,6 +219,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchUserBookings: () => dispatch(fetchUserBookings()),
+    fetchUserPosts: () => dispatch(fetchUserPosts()),
   }
 }
 

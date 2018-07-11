@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import SearchForm from '../components/SearchForm';
 import Item from '../components/Item';
 import { fetchCommodities } from '../reduxComponents/postActions'
 import RequestForm from '../components/RequestForm';
 import { connect } from 'react-redux';
-import { Grid, Input, Button, Popup } from 'semantic-ui-react';
+import { Grid, Input, Button } from 'semantic-ui-react';
 
 class SearchContainer extends Component {
   constructor() {
