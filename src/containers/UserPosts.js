@@ -11,15 +11,14 @@ class UserPosts extends Component {
     locationToPostId: null,
   }
 
-  componentDidMount() {
-    console.log("userPosts before debugger, props are: ",this.props);
-    this.props.fetchCommodities()
-    this.props.fetchUserPosts()
-  }
+  // componentDidMount() {
+  //   console.log("userPosts before debugger, props are: ",this.props);
+  //   this.props.fetchCommodities()
+  //   this.props.fetchUserPosts()
+  // }
 
   addPostToLocation = (post_id) => {
     console.log("addPostToLocation inside UserPosts, this.props is: ",this.props);
-    debugger
     // this.props, find the post according to the post id, get it to render on the popup
     this.setState({
       locationToPostId: post_id,

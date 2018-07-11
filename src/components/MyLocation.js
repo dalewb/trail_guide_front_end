@@ -19,7 +19,7 @@ const styles = {
   },
 };
 
-function Location(props) {
+function MyLocation(props) {
   let desc = ""
   if (props.info.activities) {
     desc = props.info.activities[0].description
@@ -87,4 +87,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Location);
+export default connect(mapStateToProps, mapDispatchToProps)(MyLocation);

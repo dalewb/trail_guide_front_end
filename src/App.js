@@ -3,6 +3,7 @@ import { Route, Link } from 'react-router-dom';
 import './App.css';
 import { fetchUserBookings } from './reduxComponents/bookingActions'
 import { fetchUserPosts } from './reduxComponents/postActions'
+import { fetchCommodities } from './reduxComponents/postActions'
 import SearchContainer from './containers/SearchContainer';
 import UserPosts from './containers/UserPosts';
 import LoginContainer from './containers/LoginContainer';
@@ -21,6 +22,7 @@ class App extends Component {
     console.log("componentDidMount in App, this is: ", this);
     this.props.fetchUserBookings()
     this.props.fetchUserPosts()
+    this.props.fetchCommodities()
   }
 
   render() {
@@ -99,6 +101,7 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchUserBookings: () => dispatch(fetchUserBookings()),
     fetchUserPosts: () => dispatch(fetchUserPosts()),
+    fetchCommodities: () => dispatch(fetchCommodities()),
   }
 }
 
