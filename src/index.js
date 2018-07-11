@@ -16,13 +16,14 @@ import thunk from 'redux-thunk';
 const store = createStore(
   combineReducers({
     postReducer,
-    bookingReducer,
     loginReducer,
+    bookingReducer,
   }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk),
 )
 
-console.log(store.getState());
+console.log("store.getState()",store.getState());
 
 ReactDOM.render(
   <Provider store={store}>

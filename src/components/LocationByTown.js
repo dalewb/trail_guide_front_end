@@ -24,7 +24,7 @@ class LocationByTown extends Component {
     let searchCity = this.state.city.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
     let searchState = this.state.state.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
     console.log("Inside location search submit, props are: ", this.props);
-    this.props.dispatch(fetchBookings(searchCity, searchState))
+    this.props.fetchBookings(searchCity, searchState)
     .then(res => this.props.renderLocations())
   }
 
@@ -49,7 +49,16 @@ class LocationByTown extends Component {
 }
 
 function mapStateToProps(state) {
-  debugger
+  return {
+    userLocations: state.bookingReducer.userLocations,
+    userBookings: state.bookingReducer.userBookings,
+  }
 }
 
-export default connect()(LocationByTown);
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchBookings: (city, state) => dispatch(fetchBookings(city, state))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationByTown);

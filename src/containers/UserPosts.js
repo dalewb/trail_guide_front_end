@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Post from '../components/Post';
 import LocationToPost from '../components/LocationToPost';
 import { connect } from 'react-redux';
-import { fetchPosts, deletePost } from '../reduxComponents/postActions';
+import { fetchCommodities, fetchUserPosts, deletePost } from '../reduxComponents/postActions';
 import { Card, Button, Grid } from 'semantic-ui-react';
 // import { bindActionCreators } from 'redux'
 
@@ -11,12 +11,15 @@ class UserPosts extends Component {
     locationToPostId: null,
   }
 
-  componentDidMount() {
-    console.log("userPosts before debugger, props are: ",this.props);
-    this.props.fetchPosts()
-  }
+  // componentDidMount() {
+  //   console.log("userPosts before debugger, props are: ",this.props);
+  //   this.props.fetchCommodities()
+  //   this.props.fetchUserPosts()
+  // }
 
   addPostToLocation = (post_id) => {
+    console.log("addPostToLocation inside UserPosts, this.props is: ",this.props);
+    // this.props, find the post according to the post id, get it to render on the popup
     this.setState({
       locationToPostId: post_id,
     })
@@ -37,7 +40,7 @@ class UserPosts extends Component {
 
   handleDeletePost = (deleteId) => {
     this.props.deletePost(deleteId)
-    .then(res => this.props.fetchPosts())
+    .then(res => this.props.fetchCommodities())
   }
 
   render() {
@@ -68,6 +71,7 @@ function mapStateToProps(state) {
   console.log("Posts mapStateToProps, state is: ", state);
   return {
     userCommodities: state.postReducer.userCommodities,
+    userPosts: state.postReducer.userPosts,
     user: state.loginReducer.user,
     loading: state.loading,
     error: state.error,
@@ -77,9 +81,9 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchPosts: () => dispatch(fetchPosts()),
-    deletePost: (deleteId) => dispatch(deletePost(deleteId))
-    // fetchPosts: bindActionCreators(fetchPosts, dispatch)
+    fetchCommodities: () => dispatch(fetchCommodities()),
+    fetchUserPosts: () => {dispatch(fetchUserPosts())},
+    deletePost: (deleteId) => dispatch(deletePost(deleteId)),
   }
 }
 

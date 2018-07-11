@@ -1,6 +1,7 @@
 const initialState = {
   allCommodities: [],
   userCommodities: [],
+  userPosts: [],
   loading: false,
   error: null,
 };
@@ -9,11 +10,17 @@ export default function postReducer(state = initialState, action) {
 
   switch(action.type) {
 
-    case "FETCH_POSTS":
+    case "FETCH_COMMODITIES":
       return {
         ...state,
-        userCommodities: action.payload
+        userCommodities: action.payload,
       };
+
+    case "FETCH_USER_POSTS":
+      return {
+        ...state,
+        userPosts: action.payload,
+      }
 
     case "DELETE_POST":
       return {

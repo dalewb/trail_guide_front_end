@@ -1,6 +1,7 @@
 import React from 'react';
+import { fetchUserPosts } from '../reduxComponents/postActions'
 import PropTypes from 'prop-types';
-import { Form, Image, Button, Grid, Card } from 'semantic-ui-react';
+import { Form, Image, Button, Grid, Card, Popup, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -18,7 +19,7 @@ const styles = {
   },
 };
 
-function Location(props) {
+function MyLocation(props) {
   let desc = ""
   if (props.info.activities) {
     desc = props.info.activities[0].description
@@ -26,7 +27,25 @@ function Location(props) {
     desc = props.info.desc
   }
 
-  const { classes } = props;
+  function renderAssociatedItems() {
+    console.log("before fetch, renderAssociatedItems in MyLocation, props is :",props);
+    let posts = props.userPosts.filter(post => post.location_id === props.id)
+    return posts.map(post => {
+      return (
+        <Grid.Column textAlign='center'>
+          <Header as='h4'>{post.commodity.name}</Header>
+            <p>
+              <b>Date Needed: </b>{post.date_needed}
+            </p>
+            <p>
+              <b>Date Posted: </b>{post.date_posted}
+            </p>
+          <Button>Choose</Button>
+      </Grid.Column>
+      )
+    })
+  }
+
   return (
     <Grid.Column>
       <Card>
@@ -42,6 +61,11 @@ function Location(props) {
           <Card.Meta>Arrival Date: {props.info.date}</Card.Meta>
           <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
         </Card.Content>
+        <Popup trigger={<Button icon='add'>Show Requested Items</Button>}>
+          <Grid centered divided columns={1}>
+            {renderAssociatedItems()}
+          </Grid>
+        </Popup>
         <Button onClick={() => props.handleDeleteLocationClick(props.info)}>
           Remove From Your Locations
         </Button>
@@ -50,8 +74,17 @@ function Location(props) {
   );
 }
 
-Location.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+function mapStateToProps(state) {
+  return {
+    userBookings: state.bookingReducer.userBookings,
+    userPosts: state.postReducer.userPosts,
+  }
+}
 
-export default connect()(Location);
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchUserPosts: () => dispatch(fetchUserPosts())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyLocation);
