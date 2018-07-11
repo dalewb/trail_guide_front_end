@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Post from '../components/Post';
 import LocationToPost from '../components/LocationToPost';
 import { connect } from 'react-redux';
-import { fetchCommodities, deletePost } from '../reduxComponents/postActions';
+import { fetchCommodities, fetchUserPosts, deletePost } from '../reduxComponents/postActions';
 import { Card, Button, Grid } from 'semantic-ui-react';
 // import { bindActionCreators } from 'redux'
 
@@ -14,9 +14,13 @@ class UserPosts extends Component {
   componentDidMount() {
     console.log("userPosts before debugger, props are: ",this.props);
     this.props.fetchCommodities()
+    this.props.fetchUserPosts()
   }
 
   addPostToLocation = (post_id) => {
+    console.log("addPostToLocation inside UserPosts, this.props is: ",this.props);
+    debugger
+    // this.props, find the post according to the post id, get it to render on the popup
     this.setState({
       locationToPostId: post_id,
     })
@@ -68,6 +72,7 @@ function mapStateToProps(state) {
   console.log("Posts mapStateToProps, state is: ", state);
   return {
     userCommodities: state.postReducer.userCommodities,
+    userPosts: state.postReducer.userPosts,
     user: state.loginReducer.user,
     loading: state.loading,
     error: state.error,
@@ -78,7 +83,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     fetchCommodities: () => dispatch(fetchCommodities()),
-    deletePost: (deleteId) => dispatch(deletePost(deleteId))
+    fetchUserPosts: () => {dispatch(fetchUserPosts())},
+    deletePost: (deleteId) => dispatch(deletePost(deleteId)),
   }
 }
 

@@ -1,6 +1,3 @@
-export const postDeleted = () => ({
-  type: "DELETE_POST"
-})
 
 export function fetchCommodities() {
   console.log("Inside Fetch Posts");
@@ -13,6 +10,16 @@ export function fetchCommodities() {
   };
 }
 
+export function fetchUserPosts() {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/1/posts/`)
+      .then(res => res.json())
+      .then(json => {
+        dispatch({ type: 'FETCH_USER_POSTS', payload: json })
+      })
+  }
+}
+
 export function deletePost(deleteId) {
   return dispatch => {
     return fetch(`http://localhost:3000/api/v1/posts/${deleteId}`, {
@@ -23,7 +30,7 @@ export function deletePost(deleteId) {
     })
       .then(res => res.json())
       .then(json => {
-        dispatch(postDeleted())
+        dispatch({ type: "DELETE_POST" })
         return json
       })
   }
