@@ -28,6 +28,7 @@ class LocationToPost extends Component {
       .then(this.setState({
         myLocations: null,
       }))
+      .then(console.log("addLocationToProps in LocationToPost, props are: ",this.props))
   }
 
   getUserLocations() {
@@ -39,6 +40,7 @@ class LocationToPost extends Component {
   }
   renderLocation = (location) => {
     return (
+      <Grid.Column>
       <Card>
         <Card.Content>
           <Card.Header>{location.name}</Card.Header>
@@ -47,6 +49,7 @@ class LocationToPost extends Component {
         </Card.Content>
         <Button onClick={() => this.addLocationToPost(location.id)}>Add Location</Button>
       </Card>
+      </Grid.Column>
     )
   }
 

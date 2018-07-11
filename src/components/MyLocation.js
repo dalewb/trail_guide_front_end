@@ -29,6 +29,7 @@ function MyLocation(props) {
 
   function renderAssociatedItems() {
     console.log("before fetch, renderAssociatedItems in MyLocation, props is :",props);
+
     let posts = props.userPosts.filter(post => post.location_id === props.id)
     return posts.map(post => {
       return (
@@ -61,7 +62,7 @@ function MyLocation(props) {
           <Card.Meta>Arrival Date: {props.info.date}</Card.Meta>
           <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
         </Card.Content>
-        <Popup trigger={<Button icon='add'>Show Requested Items</Button>}>
+        <Popup trigger={<Button>Show Requested Items</Button>}>
           <Grid centered divided columns={1}>
             {renderAssociatedItems()}
           </Grid>

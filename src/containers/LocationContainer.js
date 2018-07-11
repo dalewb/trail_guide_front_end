@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import LocationByTown from '../components/LocationByTown';
 import Location from '../components/Location';
 import MyLocation from '../components/MyLocation';
+import { fetchUserBookings } from '../reduxComponents/bookingActions'
+import { fetchUserPosts } from '../reduxComponents/postActions'
 import { connect } from 'react-redux';
 import { Form, Card, Button, Grid } from 'semantic-ui-react';
 
@@ -11,22 +13,34 @@ class LocationContainer extends Component {
 
     this.state = {
       locations: [],
-      myLocations: [],
+      userLocations: [],
       date: '',
       time: '',
       newLocationId: '',
       myLocationForm: false,
       toggleMyLocations: false,
-      locationButtonText: 'Show'
+      toggleLocations: true,
+      locationButtonText: 'Show',
+      toggleLocationByTown: true,
     }
   }
 
-  getUserLocations() {
-    fetch("http://localhost:3000/api/v1/1/bookings")
-    .then(res => res.json())
-    .then(json => this.setState({
-      myLocations: json.data
-    }, () => {console.log(json)}))
+  toggleMyLocations = () => {
+    this.setState({
+      toggleMyLocations: !this.state.toggleMyLocations,
+    })
+  }
+
+  toggleLocations = () => {
+    this.setState({
+      toggleLocations: !this.state.toggleLocations,
+    })
+  }
+
+  toggleLocationByTown = () => {
+    this.setState({
+      toggleLocationByTown: !this.state.toggleLocationByTown,
+    })
   }
 
   handleLocationClick = (location) => {
@@ -50,6 +64,8 @@ class LocationContainer extends Component {
   		.then(json => {this.setState({
         newLocationId: json.data.id,
         myLocationForm: true,
+        toggleLocations: !this.state.toggleLocations,
+        toggleLocationByTown: !this.state.toggleLocationByTown,
       })
     })
   }
@@ -62,22 +78,21 @@ class LocationContainer extends Component {
   		}
   	})
   		.then(res => res.json())
-      .then(json => this.getUserLocations())
+      .then(json => this.props.fetchUserBookings())
   }
 
   handleMyLocationsClick = () => {
+    console.log("handleMyLocationsClick in LocationsContainer, this.props are: ", this.props );
+    this.setState({
+      toggleMyLocations: !this.state.toggleMyLocations,
+    })
     if (this.state.toggleMyLocations === true) {
-      this.getUserLocations()
-      this.setState({
-        toggleMyLocations: !this.state.toggleMyLocations,
-        locationButtonText: 'Show'
-      })
+      this.toggleMyLocations()
     } else {
-      this.setState({
-        toggleMyLocations: !this.state.toggleMyLocations,
-        locationButtonText: 'Hide'
-      })
+      this.props.fetchUserBookings()
+      this.toggleMyLocations()
     }
+    this.props.fetchUserPosts()
   }
 
   handleMyLocationFormSubmit = (e) => {
@@ -97,8 +112,12 @@ class LocationContainer extends Component {
     })
       .then(res => res.json())
       .then(json => this.setState({
-        myLocationForm: false
-      }, () => this.getUserLocations()))
+        myLocationForm: false,
+        date: '',
+        time: '',
+        toggleLocations: !this.state.toggleLocations,
+        toggleLocationByTown: true,
+      }, () => this.props.fetchUserBookings()))
   }
 
   handleMyLocationFormChange = (e) => {
@@ -120,9 +139,17 @@ class LocationContainer extends Component {
     })
   }
 
+  renderLocationByTown = () => {
+    return (
+      <LocationByTown
+        renderLocations={this.renderLocations}
+      />
+    )
+  }
+
   renderMyLocations = () => {
     return (
-    this.state.myLocations.map(location => {
+    this.props.userBookings.map(location => {
       return (
         <MyLocation
           info={location}
@@ -131,9 +158,9 @@ class LocationContainer extends Component {
           id={location.id}
           handleDeleteLocationClick={this.handleDeleteLocationClick}
         />
-      )
-    })
-  )
+        )
+      })
+    )
   }
 
   renderMyLocationForm = () => {
@@ -163,15 +190,16 @@ class LocationContainer extends Component {
   render() {
     return (
       <div>
-        <LocationByTown
-          renderLocations={this.renderLocations}
-        /><br />
-      <Button onClick={this.handleMyLocationsClick}>{this.state.locationButtonText} My Locations</Button>
+        {this.state.toggleLocationByTown ? this.renderLocationByTown() : null}
+        <br />
+      <Button onClick={this.handleMyLocationsClick}>Toggle My Locations</Button>
+        <p></p>
+        <p></p>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
         <Grid padded columns={4}>
-          {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
+          {this.props.userBookings.length > 0 && this.state.toggleMyLocations ? this.renderMyLocations() : null}
         </Grid>
-        {this.props.allLocations ? this.renderLocations() : null}
+        {this.props.allLocations && this.state.toggleLocations ? this.renderLocations() : null}
       </div>
     )
   }
@@ -181,6 +209,7 @@ function mapStateToProps(state) {
   console.log("In mapStateToProps in LocationContainer, state.bookingReducer.userLocations is: ", state.bookingReducer.userLocations );
   return {
     allLocations: state.bookingReducer.allLocations,
+    userBookings: state.bookingReducer.userBookings,
     loading: state.loading,
     error: state.error,
     renderLocations: false,
@@ -188,7 +217,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-
+  return {
+    fetchUserBookings: () => dispatch(fetchUserBookings()),
+    fetchUserPosts: () => dispatch(fetchUserPosts()),
+  }
 }
 
-export default connect(mapStateToProps)(LocationContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationContainer);

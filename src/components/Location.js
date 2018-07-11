@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Image, Item, Button } from 'semantic-ui-react';
+import { Item, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 function Location(props) {
