@@ -1,5 +1,4 @@
 
-
 const initialState = {
   allCommodities: [],
   allLocations: [],
@@ -19,7 +18,7 @@ export default function bookingReducer(state = initialState, action) {
       console.log("--------------------");
       return {
         ...state,
-        userLocations: action.payload.places,
+        allLocations: action.payload.places,
       };
 
     case "FETCH_USER_BOOKINGS":

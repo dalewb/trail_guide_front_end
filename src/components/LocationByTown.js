@@ -28,6 +28,10 @@ class LocationByTown extends Component {
     .then(res => this.props.renderLocations())
   }
 
+  tester = () => {
+    console.log("In LocationByTown, props are currently: ",this.props)
+  }
+
   render() {
     return (
       <Card.Group centered>
@@ -43,6 +47,7 @@ class LocationByTown extends Component {
             <Button type="submit" value="Submit">Submit</Button>
           </Form.Field>
         </Form>
+        <Button onClick={this.tester}>TESTER</Button>
       </Card.Group>
     )
   }

@@ -62,7 +62,7 @@ class LocationContainer extends Component {
   		}
   	})
   		.then(res => res.json())
-      .then(json => this.getUserLocations)
+      .then(json => this.getUserLocations())
   }
 
   handleMyLocationsClick = () => {
@@ -109,7 +109,7 @@ class LocationContainer extends Component {
 
   renderLocations = () => {
     console.log("inside render locations",this.props);
-    return this.props.userLocations.map(location => {
+    return this.props.allLocations.map(location => {
       return (
         <Location
           info={location}
@@ -171,7 +171,7 @@ class LocationContainer extends Component {
         <Grid padded columns={4}>
           {(this.state.myLocations || this.state.myLocations.length > 1) && this.state.toggleMyLocations ? this.renderMyLocations() : null}
         </Grid>
-        {this.props.userLocations ? this.renderLocations() : null}
+        {this.props.allLocations ? this.renderLocations() : null}
       </div>
     )
   }
@@ -180,7 +180,7 @@ class LocationContainer extends Component {
 function mapStateToProps(state) {
   console.log("In mapStateToProps in LocationContainer, state.bookingReducer.userLocations is: ", state.bookingReducer.userLocations );
   return {
-    userLocations: state.bookingReducer.userLocations,
+    allLocations: state.bookingReducer.allLocations,
     loading: state.loading,
     error: state.error,
     renderLocations: false,
