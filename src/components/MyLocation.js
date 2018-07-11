@@ -1,7 +1,7 @@
 import React from 'react';
 import { fetchUserPosts } from '../reduxComponents/postActions'
 import PropTypes from 'prop-types';
-import { Form, Image, Button, Grid, Card, Popup } from 'semantic-ui-react';
+import { Form, Image, Button, Grid, Card, Popup, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 const styles = {
@@ -19,17 +19,31 @@ const styles = {
   },
 };
 
-function renderAssociatedItems() {
-  console.log("before fetch, renderAssociatedItems in MyLocation, props is :",props);
-  let posts = props.userPosts.filter(post => post.location_id === props.id)
-}
-
 function Location(props) {
   let desc = ""
   if (props.info.activities) {
     desc = props.info.activities[0].description
   } else if (props.info.description) {
     desc = props.info.desc
+  }
+
+  function renderAssociatedItems() {
+    console.log("before fetch, renderAssociatedItems in MyLocation, props is :",props);
+    let posts = props.userPosts.filter(post => post.location_id === props.id)
+    return posts.map(post => {
+      return (
+        <Grid.Column textAlign='center'>
+          <Header as='h4'>{post.commodity.name}</Header>
+            <p>
+              <b>Date Needed: </b>{post.date_needed}
+            </p>
+            <p>
+              <b>Date Posted: </b>{post.date_posted}
+            </p>
+          <Button>Choose</Button>
+      </Grid.Column>
+      )
+    })
   }
 
   return (
@@ -48,7 +62,7 @@ function Location(props) {
           <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
         </Card.Content>
         <Popup trigger={<Button icon='add'>Show Requested Items</Button>}>
-          <Grid centered divided columns={3}>
+          <Grid centered divided columns={1}>
             {renderAssociatedItems()}
           </Grid>
         </Popup>
