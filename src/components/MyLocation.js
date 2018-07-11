@@ -72,7 +72,7 @@ function MyLocation(props) {
           <Card.Meta>Arrival Date: {props.info.date}</Card.Meta>
           <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
         </Card.Content>
-        <Popup trigger={<Button>Show Requested Items</Button>}>
+        <Popup trigger={<Button>Show Requested Items</Button>} on='click'>
           <Grid centered divided columns={1}>
             {renderAssociatedItems()}
           </Grid>

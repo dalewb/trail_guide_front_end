@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchCommodities } from '../reduxComponents/postActions'
 import { Form, Button, Card, Icon, Label } from 'semantic-ui-react';
 
 class CreateCommodity extends Component {
@@ -28,7 +29,7 @@ class CreateCommodity extends Component {
       }),
     })
     .then(res => res.json())
-    .then(json => console.log("Create Post:",json))
+    .then(json => this.props.fetchCommodities())
   }
 
   createCommodity = () => {
@@ -81,6 +82,18 @@ class CreateCommodity extends Component {
       </Card.Group>
       </div>
     )
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    userCommodities: state.postReducer.userCommodities,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchCommodities: () => dispatch(fetchCommodities()),
   }
 }
 
