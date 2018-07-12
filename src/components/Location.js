@@ -11,7 +11,7 @@ function Location(props) {
   }
 
   return (
-    <Item.Group>
+    <Item.Group className="locations">
       <Item >
         <Item.Image size='small' src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg"/>
         <Item.Content>

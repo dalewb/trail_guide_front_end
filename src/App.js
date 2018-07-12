@@ -33,53 +33,57 @@ class App extends Component {
           <Header icon>
             <Icon name='map signs' size='tiny'/>
             Trail Angels
-            <Header.Subheader><br />Linking Hikers with Angels, Wherever They May Roam.</Header.Subheader>
+            <Header.Subheader className="test" >
+              <h1>Linking Hikers with Angels, Wherever They May Roam.</h1><br />
+            </Header.Subheader>
           </Header>
-          <Button size="small" color="black">
-            <Link to="/map">
-              Map
-            </Link>
-          </Button>
-          <Button size="small" color="black">
+          <Button.Group widths='8'>\
+          <Button size="small" color="#bebebe">
             <Link to="/login">
               Log In
             </Link>
           </Button>
-          <Button size="small" color="black">
+          <Button size="small" color="#808080">
             <Link to="/register">
               Register
             </Link>
           </Button>
-          <Button size="small" color="black">
+          <Button size="small" style={{color: "#808080"}}>
+            <Link to="/map">
+              Map
+            </Link>
+          </Button>
+          {/*<Button size="small" color="#cecece">
             <Link to="/home">
               Home Page
             </Link>
-          </Button>
-          <Button size="small" color="black">
-            <Link to="/posts">
-              View Your Posts
-            </Link>
-          </Button>
-          <Button size="small" color="black">
+          </Button>*/}
+          <Button size="small" >
             <Link to="/myLocations">
               View Your Locations
             </Link>
           </Button>
-          <Button size="small" color="black">
-            <Link to="/search">
-              Search Items
+          <Button size="small" color="#101010">
+            <Link to="/posts">
+              View Your Items
             </Link>
           </Button>
-          <Button size="small" color="black">
-            <Link to="/create_commodity">
-              Create Custom Commodity
-            </Link>
-          </Button>
-          <Button size="small" color="black">
+          <Button size="small" color="Grey">
             <Link to="/locations">
               Search Locations
             </Link>
           </Button>
+          <Button size="small" >
+            <Link to="/search">
+              Search Items
+            </Link>
+          </Button>
+          <Button size="small" color="Grey">
+            <Link to="/create_commodity">
+              Create Custom Commodity
+            </Link>
+          </Button>
+          </Button.Group>
         </Header>
         <div>
           <Route path="/home" component={HomeContainer}/>

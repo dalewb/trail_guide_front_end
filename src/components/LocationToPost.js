@@ -27,10 +27,11 @@ class LocationToPost extends Component {
     })
       .then(res => res.json())
       .then(this.props.fetchUserPosts())
-      .then(this.props.fetchUserBookings())
+      .then(console.log("After fetchUserPosts, this.props.userPosts is: ",this.props.userPosts))
       .then(this.setState({
         myLocations: null,
       }))
+      .then(console.log("This is where fetchUserPosts would go."))
   }
 
   getUserLocations() {

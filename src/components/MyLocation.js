@@ -1,5 +1,6 @@
 import React from 'react';
 import { fetchUserPosts } from '../reduxComponents/postActions'
+import { fetchUserBookings } from '../reduxComponents/bookingActions'
 import PropTypes from 'prop-types';
 import { Form, Image, Button, Grid, Card, Popup, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
@@ -25,7 +26,7 @@ function MyLocation(props) {
 
   if (props.info.activities) {
     desc = props.info.activities[0].description
-  } else if (props.info.description) {
+  } else if (props.info.desc) {
     desc = props.info.desc
   }
 
@@ -35,10 +36,36 @@ function MyLocation(props) {
     username = "Not Given"
   }
 
+  function handleRemovePostFromLocation(post) {
+    fetch(`http://localhost:3000/api/v1/posts/${post.id}`,{
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "location_id": null
+      })
+    })
+    .then(res => res.json())
+    .then(json => props.fetchUserPosts())
+  }
+
+  function handleDeleteLocationClick(propsInfo) {
+    fetch(`http://localhost:3000/api/v1/bookings/${propsInfo.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(json => props.fetchUserBookings())
+  }
+
   function renderAssociatedItems() {
-    console.log("before fetch, renderAssociatedItems in MyLocation, props is :",props);
+    console.log("THIS ONE props.userPosts is : ",props.userPosts);
 
     let posts = props.userPosts.filter(post => post.location_id === props.id)
+    console.log(posts)
     return posts.map(post => {
       return (
         <Grid.Column textAlign='center'>
@@ -49,7 +76,7 @@ function MyLocation(props) {
             <p>
               <b>Date Posted: </b>{post.date_posted}
             </p>
-          <Button>Choose</Button>
+          <Button onClick={() => handleRemovePostFromLocation(post)}>Remove</Button>
       </Grid.Column>
       )
     })
@@ -66,8 +93,9 @@ function MyLocation(props) {
           <Card.Meta>{props.info.city}</Card.Meta>
           <Card.Meta>{props.info.state}</Card.Meta>
           <Card.Meta>Latitude: {props.info.lat}</Card.Meta>
-          <Card.Meta>Longitude: {props.info.lon}</Card.Meta>
-          <Card.Meta>Description: {desc}</Card.Meta>
+          <Card.Meta>Longitude: {props.info.lon}</Card.Meta><br />
+          Description:
+          <Card.Meta>{desc}</Card.Meta><br />
           <Card.Meta>User Trail Name: {username}</Card.Meta>
           <Card.Meta>Arrival Date: {props.info.date}</Card.Meta>
           <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
@@ -77,7 +105,7 @@ function MyLocation(props) {
             {renderAssociatedItems()}
           </Grid>
         </Popup>
-        <Button onClick={() => props.handleDeleteLocationClick(props.info)}>
+        <Button onClick={() => handleDeleteLocationClick(props.info)}>
           Remove From Your Locations
         </Button>
       </Card>
@@ -95,7 +123,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchUserPosts: () => dispatch(fetchUserPosts())
+    fetchUserPosts: () => dispatch(fetchUserPosts()),
+    fetchUserBookings: ()  => dispatch(fetchUserBookings()),
   }
 }
 

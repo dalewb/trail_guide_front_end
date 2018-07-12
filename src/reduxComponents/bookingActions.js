@@ -26,3 +26,18 @@ export function fetchUserBookings() {
       })
   }
 }
+
+// export function deleteBooking() {
+//   return dispatch => {
+//     return fetch(`http://localhost:3000/api/v1/bookings/${e.id}`, {
+//   		method: "DELETE",
+//   		headers: {
+//   			"Content-Type": "application/json"
+//   		}
+//   	})
+//   		.then(res => res.json())
+//       .then(json => {
+//         dispatch({ type: "DELETE_BOOKING" })
+//       })
+//   }
+// }
