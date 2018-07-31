@@ -65,7 +65,6 @@ class CreateCommodity extends Component {
       <div>
       <Card.Group centered="true">
         <Form onSubmit={this.handleSubmit}>
-          <h3>Create Custom Commodity!</h3>
             <Form.Field>
             <input type="text" name="name" placeholder="Name" onChange={this.handleChange} />
             </Form.Field>
@@ -73,9 +72,11 @@ class CreateCommodity extends Component {
             <input type="text" name="date_needed" placeholder="Date Needed" onChange={this.handleChange} />
             </Form.Field>
             <Form.Group inline centered>
-              <label>Type: </label>
-              <Form.Radio label="Item"  name="type" value="item" onChange={this.handleChange} />
-              <Form.Radio label="Service"  name="type" value="service" onChange={this.handleChange} />
+              <label style={{color: 'white'}}>Type: </label>
+                <label style={{color: 'white'}} >Item</label>
+                  <input type="radio" label="Item"  name="type" value="item" onChange={this.handleChange} />
+                <label style={{color: 'white'}} >Service</label>
+                  <input type="radio" label="Service"  name="type" value="service" onChange={this.handleChange} />
             </Form.Group>
             <Button type="submit" value="Submit">Submit</Button>
         </Form>
@@ -97,4 +98,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect()(CreateCommodity);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateCommodity);

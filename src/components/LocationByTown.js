@@ -33,7 +33,6 @@ class LocationByTown extends Component {
     return (
       <Card.Group centered>
         <Form onSubmit={this.handleSubmit}>
-          <h3>Find a Location!</h3>
           <Form.Field>
             <input type="text" name="city" label="City" placeholder="City" onChange={this.handleChange}></input>
           </Form.Field>

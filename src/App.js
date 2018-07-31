@@ -32,23 +32,23 @@ class App extends Component {
           {/*<img src="https://images-na.ssl-images-amazon.com/images/I/412G%2B3Q49RL.jpg" className="App-logo" alt="logo" />*/}
           <Header icon>
             <Icon name='map signs' size='tiny'/>
-            Trail Angels
-            <Header.Subheader className="test" >
-              <h1>Linking Hikers with Angels, Wherever They May Roam.</h1><br />
+            Trail Guide
+            <Header.Subheader>
+              {/*<h1>Linking Hikers with Angels, Wherever They May Roam.</h1><br />*/}
             </Header.Subheader>
           </Header>
           <Button.Group widths='8'>\
-          <Button size="small" color="#bebebe">
+          <Button size="small">
             <Link to="/login">
               Log In
             </Link>
           </Button>
-          <Button size="small" color="#808080">
+          <Button size="small">
             <Link to="/register">
               Register
             </Link>
           </Button>
-          <Button size="small" style={{color: "#808080"}}>
+          <Button size="small">
             <Link to="/map">
               Map
             </Link>
@@ -63,12 +63,12 @@ class App extends Component {
               View Your Locations
             </Link>
           </Button>
-          <Button size="small" color="#101010">
+          <Button size="small">
             <Link to="/posts">
               View Your Items
             </Link>
           </Button>
-          <Button size="small" color="Grey">
+          <Button>
             <Link to="/locations">
               Search Locations
             </Link>
@@ -78,13 +78,13 @@ class App extends Component {
               Search Items
             </Link>
           </Button>
-          <Button size="small" color="Grey">
+          <Button size="small">
             <Link to="/create_commodity">
               Create Custom Commodity
             </Link>
           </Button>
           </Button.Group>
-        </Header>
+        </Header><br />
         <div>
           <Route path="/home" component={HomeContainer}/>
           <Route path="/map" component={MapContainer}/>

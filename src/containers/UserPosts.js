@@ -72,7 +72,6 @@ class UserPosts extends Component {
 
     return (
       <div>
-        <h3>Your Requests!</h3>
         { this.state.locationToPostId ? <LocationToPost postId={this.state.locationToPostId}/> : null}
         <Grid padded columns={4}>
         {userCommodities && this.state.showPosts ? this.renderUserPosts() : null}

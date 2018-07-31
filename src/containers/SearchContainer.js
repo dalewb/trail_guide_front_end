@@ -139,7 +139,6 @@ class SearchContainer extends Component {
     console.log("-------");
     return (
       <div>
-        <h3>Search for Items!</h3>
         {this.state.requestItem !== null ? this.renderRequestForm() : null}
         {this.state.requestItem === null ? this.renderSearchForm() : null}
 

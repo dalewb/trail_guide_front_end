@@ -51,7 +51,6 @@ class RegistrationForm extends Component {
     return (
       <Card.Group centered>
       <Form onSubmit={this.handleRegistrationSubmit}>
-        <h3>Register!</h3>
           <Form.Field>
             <input type="text" name="username" label="Username" placeholder="Username" onChange={this.handleChange}/>
           </Form.Field>

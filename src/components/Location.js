@@ -11,7 +11,7 @@ function Location(props) {
   }
 
   return (
-    <Item.Group className="locations">
+    <Item.Group id="locations">
       <Item >
         <Item.Image size='small' src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg"/>
         <Item.Content>
@@ -32,7 +32,7 @@ function Location(props) {
           </Item.Meta>
           <Item.Description>
             Description: {desc}
-          </Item.Description>
+          </Item.Description><br />
           <Button size="small" onClick={() => props.handleLocationClick(props.info)}>
             Add to Your Locations
           </Button>
