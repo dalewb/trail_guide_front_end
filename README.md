@@ -11,6 +11,10 @@ The back end for this application can be found at https://github.com/dalewb/trai
 
 Built using Ruby on Rails
 
+## Contributing 
+
+Please feel free to fork, use, improve or change this code!  
+
 ## Authors 
 
 William Dale - Creator
