@@ -9,11 +9,7 @@ Built using React.js and Redux
 
 The back end for this application can be found at https://github.com/dalewb/trail_angels_back_end
 
-Built using Ruby on Rails
-
-## Contributing 
-
-Please feel free to fork, use, improve or change this code!  
+Built using Ruby on Rails 
 
 ## Authors 
 
