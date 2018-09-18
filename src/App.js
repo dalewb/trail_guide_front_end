@@ -32,7 +32,7 @@ class App extends Component {
           {/*<img src="https://images-na.ssl-images-amazon.com/images/I/412G%2B3Q49RL.jpg" className="App-logo" alt="logo" />*/}
           <Header icon>
             <Icon name='map signs' size='tiny'/>
-            Trail Guide
+            Trail Angels
             <Header.Subheader>
               {/*<h1>Linking Hikers with Angels, Wherever They May Roam.</h1><br />*/}
             </Header.Subheader>

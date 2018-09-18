@@ -193,7 +193,6 @@ class LocationContainer extends Component {
       <div>
         {this.state.toggleLocationByTown ? this.renderLocationByTown() : null}
         <br />
-      <Button onClick={this.handleMyLocationsClick}>Toggle My Locations</Button>
         <p></p>
         <p></p>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
