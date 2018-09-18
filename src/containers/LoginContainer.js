@@ -19,7 +19,7 @@ class LoginContainer extends Component {
 
   findUser = (info) => {
     console.log(this.state);
-    let user = this.state.allUsers.find(user => user.username === info.username)
+    let user = this.state.allUsers.find(user => user.username.toLowerCase() === info.username.toLowerCase())
     if (user) {
       console.log("In findUser, props are: ", this.props)
       this.props.setUser(user)

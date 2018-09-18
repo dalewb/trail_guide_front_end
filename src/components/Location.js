@@ -5,9 +5,9 @@ import { connect } from 'react-redux';
 function Location(props) {
   let desc = ""
   if (props.info.activities) {
-    desc = props.info.activities[0].description
+    desc = props.info.activities[0].description.replace(/&quot;/g, "\"")
   } else if (props.info.description) {
-    desc = props.info.description
+    desc = props.info.description.replace(/&quot;/g, '\"')
   }
 
   return (
@@ -28,7 +28,7 @@ function Location(props) {
             Latitude: {props.info.lat}
           </Item.Meta>
           <Item.Meta>
-            Latitude: {props.info.lon}
+            Longitude: {props.info.lon}
           </Item.Meta>
           <Item.Description>
             Description: {desc}
