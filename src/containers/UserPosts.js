@@ -12,12 +12,6 @@ class UserPosts extends Component {
     showPosts: true,
   }
 
-  // componentDidMount() {
-  //   console.log("userPosts before debugger, props are: ",this.props);
-  //   this.props.fetchCommodities()
-  //   this.props.fetchUserPosts()
-  // }
-
   toggleShowPosts = () => {
     this.setState({
       showPosts: !this.state.showPosts,
