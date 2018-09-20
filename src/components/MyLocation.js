@@ -56,7 +56,7 @@ class MyLocation extends Component {
   }
 
   renderAssociatedItems = () => {
-    this.props.fetchUserPosts()
+
     let posts = this.props.userPosts.filter(post => post.location_id === this.props.id)
     console.log("renderAssociatedItems, props are ", this.props);
     return posts.map(post => {
@@ -107,7 +107,7 @@ class MyLocation extends Component {
             <Card.Meta>Arrival Date: {this.props.info.date}</Card.Meta>
             <Card.Meta>Arrival Time: {this.props.info.time}</Card.Meta>
           </Card.Content>
-          <Popup trigger={<Button>Show Requested Items</Button>} on='click'>
+          <Popup trigger={<Button onClick={() => this.props.fetchUserPosts()}>Show Requested Items</Button>} on='click'>
             <Grid centered divided columns={1}>
               {this.renderAssociatedItems()}
             </Grid>
