@@ -22,6 +22,8 @@ const styles = {
 
 class MyLocation extends Component {
 
+
+
   componentDidMount() {
     console.log("MY LOCATION RENDEREDDDDDDDD");
     console.log("props are", this.props);
@@ -54,8 +56,9 @@ class MyLocation extends Component {
   }
 
   renderAssociatedItems = () => {
-    console.log("posts are ", posts);
+    this.props.fetchUserPosts()
     let posts = this.props.userPosts.filter(post => post.location_id === this.props.id)
+    console.log("renderAssociatedItems, props are ", this.props);
     return posts.map(post => {
       return (
         <Grid.Column textAlign='center'>
