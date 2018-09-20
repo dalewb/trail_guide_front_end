@@ -77,7 +77,6 @@ class UserPosts extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Posts mapStateToProps, state is: ", state);
   return {
     userCommodities: state.postReducer.userCommodities,
     userPosts: state.postReducer.userPosts,

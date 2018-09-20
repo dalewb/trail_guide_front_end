@@ -54,6 +54,7 @@ class MyLocation extends Component {
   }
 
   renderAssociatedItems = () => {
+    console.log("posts are ", posts);
     let posts = this.props.userPosts.filter(post => post.location_id === this.props.id)
     return posts.map(post => {
       return (

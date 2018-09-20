@@ -1,6 +1,5 @@
 
 export function fetchCommodities() {
-  console.log("Inside Fetch Posts");
   return dispatch => {
     return fetch(`http://localhost:3000/api/v1/1/posts/commodities`)
       .then(res => res.json())

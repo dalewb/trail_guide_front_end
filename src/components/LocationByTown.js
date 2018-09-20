@@ -23,7 +23,6 @@ class LocationByTown extends Component {
     e.preventDefault()
     let searchCity = this.state.city.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
     let searchState = this.state.state.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
-    console.log("Inside location search submit, props are: ", this.props);
     this.props.fetchBookings(searchCity, searchState)
     .then(res => this.props.renderLocations())
     .then()

@@ -19,7 +19,7 @@ class Post extends Component {
     } else {
       img_url = this.props.info.img_url
     }
-    console.log("Before debugger in render user post, this is: ", this);
+
     return (
       <Grid.Column>
         <Card>
@@ -51,7 +51,6 @@ class Post extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Inside mapStateToProps in Post, state is: ", state);
   return {
     user: state.loginReducer.user
   }

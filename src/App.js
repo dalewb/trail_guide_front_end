@@ -19,7 +19,6 @@ import { Header, Icon, Button } from 'semantic-ui-react';
 class App extends Component {
 
   componentDidMount() {
-    console.log("componentDidMount in App, this is: ", this);
     this.props.fetchUserBookings()
     this.props.fetchUserPosts()
     this.props.fetchCommodities()

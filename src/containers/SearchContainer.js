@@ -23,8 +23,6 @@ class SearchContainer extends Component {
   }
 
   createPost = (item) => {
-    console.log("requestItem is initially", item);
-    console.log("------");
     const currentDate = new Date()
     fetch("http://localhost:3000/api/v1/posts", {
   		method: "POST",
@@ -47,7 +45,6 @@ class SearchContainer extends Component {
   }
 
   createNewItem = () => {
-    console.log("Inside CreateNewItem, this.state is: ", this.state);
     fetch("http://localhost:3000/api/v1/commodities", {
   		method: "POST",
   		headers: {
@@ -79,7 +76,6 @@ class SearchContainer extends Component {
   }
 
   renderSearchForm = () => {
-    console.log("renderSearchForm, this is: ", this);
     return (
       <div>
         <Input
@@ -134,9 +130,6 @@ class SearchContainer extends Component {
   }
 
   render() {
-    console.log("search rendered");
-    console.log("state is", this.state);
-    console.log("-------");
     return (
       <div>
         {this.state.requestItem !== null ? this.renderRequestForm() : null}

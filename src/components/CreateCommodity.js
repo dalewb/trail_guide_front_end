@@ -33,7 +33,6 @@ class CreateCommodity extends Component {
   }
 
   createCommodity = () => {
-    console.log("In Fetch");
     fetch("http://localhost:3000/api/v1/commodities", {
       method: "POST",
       headers: {
@@ -51,7 +50,7 @@ class CreateCommodity extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    }, () => {console.log("On Change",this.state)})
+    })
   }
 
   handleSubmit = (e) => {

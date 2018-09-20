@@ -27,11 +27,9 @@ class LocationToPost extends Component {
     })
       .then(res => res.json())
       .then(this.props.fetchUserPosts())
-      .then(console.log("After fetchUserPosts, this.props.userPosts is: ",this.props.userPosts))
       .then(this.setState({
         myLocations: null,
       }))
-      .then(console.log("This is where fetchUserPosts would go."))
   }
 
   getUserLocations() {
@@ -39,7 +37,7 @@ class LocationToPost extends Component {
     .then(res => res.json())
     .then(json => this.setState({
       myLocations: json.data
-    }, () => {console.log("get user locations, json is: ",json)}))
+    }))
   }
   renderLocation = (location) => {
     return (
@@ -76,7 +74,6 @@ class LocationToPost extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log("LocationToPost, mapStateToProps, state is: ", state);
   return {
     userPosts: state.postReducer.userPosts,
     userBookings: state.bookingReducer.userBookings,
