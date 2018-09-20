@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { fetchUserPosts } from '../reduxComponents/postActions'
 import { fetchUserBookings } from '../reduxComponents/bookingActions'
 import PropTypes from 'prop-types';
@@ -20,23 +20,15 @@ const styles = {
   },
 };
 
-function MyLocation(props) {
-  let desc = ""
-  let username = ""
+class MyLocation extends Component {
 
-  if (props.info.activities) {
-    desc = props.info.activities[0].description
-  } else if (props.info.desc) {
-    desc = props.info.desc
+  componentDidMount() {
+    console.log("MY LOCATION RENDEREDDDDDDDD");
+    console.log("props are", this.props);
+    console.log("-------------------");
   }
 
-  if (props.user) {
-    username = props.user.username
-  } else {
-    username = "Not Given"
-  }
-
-  function handleRemovePostFromLocation(post) {
+  handleRemovePostFromLocation = (post) => {
     fetch(`http://localhost:3000/api/v1/posts/${post.id}`,{
       method: "PATCH",
       headers: {
@@ -47,10 +39,10 @@ function MyLocation(props) {
       })
     })
     .then(res => res.json())
-    .then(json => props.fetchUserPosts())
+    .then(json => this.props.fetchUserPosts())
   }
 
-  function handleDeleteLocationClick(propsInfo) {
+  handleDeleteLocationClick = (propsInfo) => {
     fetch(`http://localhost:3000/api/v1/bookings/${propsInfo.id}`, {
       method: "DELETE",
       headers: {
@@ -58,14 +50,11 @@ function MyLocation(props) {
       }
     })
       .then(res => res.json())
-      .then(json => props.fetchUserBookings())
+      .then(json => this.props.fetchUserBookings())
   }
 
-  function renderAssociatedItems() {
-    console.log("THIS ONE props.userPosts is : ",props.userPosts);
-
-    let posts = props.userPosts.filter(post => post.location_id === props.id)
-    console.log(posts)
+  renderAssociatedItems = () => {
+    let posts = this.props.userPosts.filter(post => post.location_id === this.props.id)
     return posts.map(post => {
       return (
         <Grid.Column textAlign='center'>
@@ -76,41 +65,56 @@ function MyLocation(props) {
             <p>
               <b>Date Posted: </b>{post.date_posted}
             </p>
-          <Button onClick={() => handleRemovePostFromLocation(post)}>Remove</Button>
+          <Button onClick={() => this.handleRemovePostFromLocation(post)}>Remove</Button>
       </Grid.Column>
       )
     })
   }
 
+  render() {
+    let desc = ""
+    let username = ""
 
+    if (this.props.info.activities) {
+      desc = this.props.info.activities[0].description
+    } else if (this.props.info.desc) {
+      desc = this.props.info.desc
+    }
 
-  return (
-    <Grid.Column>
-      <Card>
-        <Image src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg" />
-        <Card.Content>
-          <Card.Header>{props.info.name}</Card.Header>
-          <Card.Meta>{props.info.city}</Card.Meta>
-          <Card.Meta>{props.info.state}</Card.Meta>
-          <Card.Meta>Latitude: {props.info.lat}</Card.Meta>
-          <Card.Meta>Longitude: {props.info.lon}</Card.Meta><br />
-          Description:
-          <Card.Meta>{desc}</Card.Meta><br />
-          <Card.Meta>User Trail Name: {username}</Card.Meta>
-          <Card.Meta>Arrival Date: {props.info.date}</Card.Meta>
-          <Card.Meta>Arrival Time: {props.info.time}</Card.Meta>
-        </Card.Content>
-        <Popup trigger={<Button>Show Requested Items</Button>} on='click'>
-          <Grid centered divided columns={1}>
-            {renderAssociatedItems()}
-          </Grid>
-        </Popup>
-        <Button onClick={() => handleDeleteLocationClick(props.info)}>
-          Remove From Your Locations
-        </Button>
-      </Card>
-    </Grid.Column>
-  );
+    if (this.props.user) {
+      username = this.props.user.username
+    } else {
+      username = "Not Given"
+    }
+
+    return (
+      <Grid.Column>
+        <Card>
+          <Image src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg" />
+          <Card.Content>
+            <Card.Header>{this.props.info.name}</Card.Header>
+            <Card.Meta>{this.props.info.city}</Card.Meta>
+            <Card.Meta>{this.props.info.state}</Card.Meta>
+            <Card.Meta>Latitude: {this.props.info.lat}</Card.Meta>
+            <Card.Meta>Longitude: {this.props.info.lon}</Card.Meta><br />
+            Description:
+            <Card.Meta>{desc}</Card.Meta><br />
+            <Card.Meta>User Trail Name: {username}</Card.Meta>
+            <Card.Meta>Arrival Date: {this.props.info.date}</Card.Meta>
+            <Card.Meta>Arrival Time: {this.props.info.time}</Card.Meta>
+          </Card.Content>
+          <Popup trigger={<Button>Show Requested Items</Button>} on='click'>
+            <Grid centered divided columns={1}>
+              {this.renderAssociatedItems()}
+            </Grid>
+          </Popup>
+          <Button onClick={() => this.handleDeleteLocationClick(this.props.info)}>
+            Remove From Your Locations
+          </Button>
+        </Card>
+      </Grid.Column>
+    );
+  }
 }
 
 function mapStateToProps(state) {

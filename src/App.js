@@ -33,58 +33,54 @@ class App extends Component {
           <Header icon>
             <Icon name='map signs' size='tiny'/>
             Trail Angels
-            <Header.Subheader>
-              {/*<h1>Linking Hikers with Angels, Wherever They May Roam.</h1><br />*/}
-            </Header.Subheader>
+            <Header.Subheader><br />Linking Hikers with Angels, Wherever They May Roam.</Header.Subheader>
           </Header>
-          <Button.Group widths='8'>\
-          <Button size="small">
-            <Link to="/login">
-              Log In
-            </Link>
-          </Button>
-          <Button size="small">
-            <Link to="/register">
-              Register
-            </Link>
-          </Button>
-          <Button size="small">
+          <Button size="small" color="black">
             <Link to="/map">
               Map
             </Link>
           </Button>
-          {/*<Button size="small" color="#cecece">
+          <Button size="small" color="black">
+            <Link to="/login">
+              Log In
+            </Link>
+          </Button>
+          <Button size="small" color="black">
+            <Link to="/register">
+              Register
+            </Link>
+          </Button>
+          <Button size="small" color="black">
             <Link to="/home">
               Home Page
             </Link>
-          </Button>*/}
-          <Button size="small" >
+          </Button>
+          <Button size="small" color="black">
+            <Link to="/posts">
+              View Your Posts
+            </Link>
+          </Button>
+          <Button size="small" color="black">
             <Link to="/myLocations">
               View Your Locations
             </Link>
           </Button>
-          <Button size="small">
-            <Link to="/posts">
-              View Your Items
-            </Link>
-          </Button>
-          <Button>
-            <Link to="/locations">
-              Search Locations
-            </Link>
-          </Button>
-          <Button size="small" >
+          <Button size="small" color="black">
             <Link to="/search">
               Search Items
             </Link>
           </Button>
-          <Button size="small">
+          <Button size="small" color="black">
             <Link to="/create_commodity">
               Create Custom Commodity
             </Link>
           </Button>
-          </Button.Group>
-        </Header><br />
+          <Button size="small" color="black">
+            <Link to="/locations">
+              Search Locations
+            </Link>
+          </Button>
+        </Header>
         <div>
           <Route path="/home" component={HomeContainer}/>
           <Route path="/map" component={MapContainer}/>
