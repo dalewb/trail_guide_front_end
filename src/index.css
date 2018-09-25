@@ -2,5 +2,30 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #a2bfb0;
+  background: url("https://cdn.cnn.com/cnnnext/dam/assets/170407220921-07-iconic-mountains-pitons-restricted.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
+
+h2 {
+    text-shadow: 0px 0px 10px rgba(255,255,255,0.7);
+}
+
+#locations div {
+  color: white;
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.7);
+}
+
+#radio {
+  color: white;
+}
+/* html {
+  background: url("https://cdn.cnn.com/cnnnext/dam/assets/170407220921-07-iconic-mountains-pitons-restricted.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */

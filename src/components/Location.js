@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 function Location(props) {
   let desc = ""
   if (props.info.activities) {
-    desc = props.info.activities[0].description
+    desc = props.info.activities[0].description.replace(/&quot;/g, "\"")
   } else if (props.info.description) {
-    desc = props.info.description
+    desc = props.info.description.replace(/&quot;/g, '\"')
   }
 
   return (
-    <Item.Group>
+    <Item.Group id="locations">
       <Item >
         <Item.Image size='small' src="http://pluspng.com/img-png/png-hiker-free-hiker-pictures-boy-scout-hiking-clip-art-image-1164.jpg"/>
         <Item.Content>
@@ -28,11 +28,11 @@ function Location(props) {
             Latitude: {props.info.lat}
           </Item.Meta>
           <Item.Meta>
-            Latitude: {props.info.lon}
+            Longitude: {props.info.lon}
           </Item.Meta>
           <Item.Description>
             Description: {desc}
-          </Item.Description>
+          </Item.Description><br />
           <Button size="small" onClick={() => props.handleLocationClick(props.info)}>
             Add to Your Locations
           </Button>

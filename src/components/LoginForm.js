@@ -14,7 +14,7 @@ class loginForm extends Component {
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    }, () => {console.log(this.state)})
+    })
   }
 
   handleSubmit = (e) => {
@@ -26,7 +26,6 @@ class loginForm extends Component {
     return (
       <Card.Group centered>
         <Form onSubmit={this.handleSubmit}>
-          <h3>Log In!</h3>
           <Form.Field>
             <input type='text' name='username' label="Username" placeholder="Username" onChange={this.handleChange}/>
           </Form.Field>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {fetchBookings} from '../reduxComponents/bookingActions';
+import { fetchBookings, fetchUserBookings } from '../reduxComponents/bookingActions';
 import { Form, Button, Card } from 'semantic-ui-react';
 
 class LocationByTown extends Component {
@@ -23,16 +23,15 @@ class LocationByTown extends Component {
     e.preventDefault()
     let searchCity = this.state.city.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
     let searchState = this.state.state.split(' ').map(string => this.capitalizeFirstLetter(string)).join('+')
-    console.log("Inside location search submit, props are: ", this.props);
     this.props.fetchBookings(searchCity, searchState)
     .then(res => this.props.renderLocations())
+    .then()
   }
 
   render() {
     return (
       <Card.Group centered>
         <Form onSubmit={this.handleSubmit}>
-          <h3>Find a Location!</h3>
           <Form.Field>
             <input type="text" name="city" label="City" placeholder="City" onChange={this.handleChange}></input>
           </Form.Field>
@@ -57,7 +56,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    fetchBookings: (city, state) => dispatch(fetchBookings(city, state))
+    fetchBookings: (city, state) => dispatch(fetchBookings(city, state)),
+    fetchUserBookings: () => dispatch(fetchUserBookings())
   }
 }
 

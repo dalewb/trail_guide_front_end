@@ -33,13 +33,13 @@ class RegistrationForm extends Component {
       .then(res => res.json())
       .then(json => {this.setState({
         currentUserId: json.data.id
-      }, () => {console.log("Inside Create User, state is: ",this.state)})})
+      })})
   }
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    }, () => {console.log(this.state)})
+    })
   }
 
   handleRegistrationSubmit = (e) => {
@@ -51,7 +51,6 @@ class RegistrationForm extends Component {
     return (
       <Card.Group centered>
       <Form onSubmit={this.handleRegistrationSubmit}>
-        <h3>Register!</h3>
           <Form.Field>
             <input type="text" name="username" label="Username" placeholder="Username" onChange={this.handleChange}/>
           </Form.Field>

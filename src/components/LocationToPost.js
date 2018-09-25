@@ -1,6 +1,8 @@
 import React , { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchBookings } from '../reduxComponents/bookingActions';
+import { fetchUserPosts } from '../reduxComponents/postActions';
+import { fetchUserBookings } from '../reduxComponents/bookingActions';
 import { Card, Grid, Button } from 'semantic-ui-react';
 
 class LocationToPost extends Component {
@@ -24,11 +26,10 @@ class LocationToPost extends Component {
       })
     })
       .then(res => res.json())
-      .then(json => console.log("Return from post PATCH, json is: ", json))
+      .then(this.props.fetchUserPosts())
       .then(this.setState({
         myLocations: null,
       }))
-      .then(console.log("addLocationToProps in LocationToPost, props are: ",this.props))
   }
 
   getUserLocations() {
@@ -36,7 +37,7 @@ class LocationToPost extends Component {
     .then(res => res.json())
     .then(json => this.setState({
       myLocations: json.data
-    }, () => {console.log("get user locations, json is: ",json)}))
+    }))
   }
   renderLocation = (location) => {
     return (
@@ -47,7 +48,7 @@ class LocationToPost extends Component {
           <Card.Meta>Arrival Date: {location.date}</Card.Meta>
           <Card.Meta>Arrival Time: {location.time}</Card.Meta>
         </Card.Content>
-        <Button onClick={() => this.addLocationToPost(location.id)}>Add Location</Button>
+        <Button onClick={() => this.addLocationToPost(location.id)}>Add To Location</Button>
       </Card>
       </Grid.Column>
     )
@@ -73,16 +74,17 @@ class LocationToPost extends Component {
 };
 
 function mapStateToProps(state) {
-  console.log("LocationToPost, mapStateToProps, state is: ", state);
   return {
-    myLocations: "",
+    userPosts: state.postReducer.userPosts,
+    userBookings: state.bookingReducer.userBookings,
   }
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
   return {
-
+    fetchUserPosts: () => dispatch(fetchUserPosts()),
+    fetchUserBookings: () => dispatch(fetchUserBookings()),
   }
 }
 
-export default connect()(LocationToPost);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationToPost);

@@ -12,12 +12,6 @@ class UserPosts extends Component {
     showPosts: true,
   }
 
-  // componentDidMount() {
-  //   console.log("userPosts before debugger, props are: ",this.props);
-  //   this.props.fetchCommodities()
-  //   this.props.fetchUserPosts()
-  // }
-
   toggleShowPosts = () => {
     this.setState({
       showPosts: !this.state.showPosts,
@@ -72,7 +66,6 @@ class UserPosts extends Component {
 
     return (
       <div>
-        <h3>Your Requests!</h3>
         { this.state.locationToPostId ? <LocationToPost postId={this.state.locationToPostId}/> : null}
         <Grid padded columns={4}>
         {userCommodities && this.state.showPosts ? this.renderUserPosts() : null}
@@ -84,7 +77,6 @@ class UserPosts extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Posts mapStateToProps, state is: ", state);
   return {
     userCommodities: state.postReducer.userCommodities,
     userPosts: state.postReducer.userPosts,

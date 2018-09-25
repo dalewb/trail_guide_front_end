@@ -82,7 +82,6 @@ class LocationContainer extends Component {
   }
 
   handleMyLocationsClick = () => {
-    console.log("handleMyLocationsClick in LocationsContainer, this.props are: ", this.props );
     this.setState({
       toggleMyLocations: !this.state.toggleMyLocations,
     })
@@ -96,7 +95,6 @@ class LocationContainer extends Component {
   }
 
   handleMyLocationFormSubmit = (e) => {
-    console.log("Inside my location form submit", this.state)
     e.preventDefault()
     fetch('http://localhost:3000/api/v1/bookings', {
       method: 'POST',
@@ -127,7 +125,6 @@ class LocationContainer extends Component {
   }
 
   renderLocations = () => {
-    console.log("inside render locations",this.props);
     return this.props.allLocations.map(location => {
       return (
         <Location
@@ -154,7 +151,7 @@ class LocationContainer extends Component {
         <MyLocation
           info={location}
           key={location.id}
-          userId="1"
+          user={this.props.user}
           id={location.id}
           handleDeleteLocationClick={this.handleDeleteLocationClick}
         />
@@ -192,7 +189,6 @@ class LocationContainer extends Component {
       <div>
         {this.state.toggleLocationByTown ? this.renderLocationByTown() : null}
         <br />
-      <Button onClick={this.handleMyLocationsClick}>Toggle My Locations</Button>
         <p></p>
         <p></p>
         {this.state.myLocationForm ? this.renderMyLocationForm() : null}
@@ -206,13 +202,13 @@ class LocationContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("In mapStateToProps in LocationContainer, state.bookingReducer.userLocations is: ", state.bookingReducer.userLocations );
   return {
     allLocations: state.bookingReducer.allLocations,
     userBookings: state.bookingReducer.userBookings,
     loading: state.loading,
     error: state.error,
     renderLocations: false,
+    user: state.loginReducer.user
   }
 }
 

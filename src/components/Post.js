@@ -19,7 +19,7 @@ class Post extends Component {
     } else {
       img_url = this.props.info.img_url
     }
-    console.log("Before debugger in render user post, this is: ", this);
+
     return (
       <Grid.Column>
         <Card>
@@ -29,9 +29,9 @@ class Post extends Component {
             <Card.Meta>Trail Name: {this.props.user.username}</Card.Meta>
             <Card.Meta>Date Posted: {this.props.info.date_posted}</Card.Meta>
             <Card.Meta>Date Needed: {date_needed}</Card.Meta>
-            <Card.Meta>Type: {this.props.user.user_type}</Card.Meta>
+            {/*}<Card.Meta>Type: {this.props.user.user_type}</Card.Meta>
             <Card.Meta>Gender: {this.props.user.gender}</Card.Meta>
-            <Card.Meta>Start Date: {this.props.user.start_date}</Card.Meta>
+            <Card.Meta>Start Date: {this.props.user.start_date}</Card.Meta>*/}
             <Button onClick={() => this.props.handleDeletePost(this.props.info.id)}>Delete</Button>
             <Button onClick={() => this.props.addPostToLocation(this.props.info.id)}>Add To Location</Button>
           </Card.Content>
@@ -51,7 +51,6 @@ class Post extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("Inside mapStateToProps in Post, state is: ", state);
   return {
     user: state.loginReducer.user
   }

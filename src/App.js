@@ -19,7 +19,6 @@ import { Header, Icon, Button } from 'semantic-ui-react';
 class App extends Component {
 
   componentDidMount() {
-    console.log("componentDidMount in App, this is: ", this);
     this.props.fetchUserBookings()
     this.props.fetchUserPosts()
     this.props.fetchCommodities()
@@ -32,8 +31,8 @@ class App extends Component {
           {/*<img src="https://images-na.ssl-images-amazon.com/images/I/412G%2B3Q49RL.jpg" className="App-logo" alt="logo" />*/}
           <Header icon>
             <Icon name='map signs' size='tiny'/>
-            Trail Angels
-            <Header.Subheader><br />Linking Hikers with Angels, Wherever They May Roam.</Header.Subheader>
+            Trail Guide
+            <Header.Subheader><br />Plan Your Next Big Adventure</Header.Subheader>
           </Header>
           <Button size="small" color="black">
             <Link to="/map">
@@ -57,7 +56,7 @@ class App extends Component {
           </Button>
           <Button size="small" color="black">
             <Link to="/posts">
-              View Your Posts
+              View Your Items
             </Link>
           </Button>
           <Button size="small" color="black">

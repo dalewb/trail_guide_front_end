@@ -18,7 +18,7 @@ class HomeContainer extends Component {
 
   render() {
     return (
-      <h1>HOMEEEEEEE!!!!!!!!</h1>
+      <h1>HOME</h1>
     )
   }
 }

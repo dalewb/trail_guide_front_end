@@ -29,7 +29,7 @@ class MapContainer extends Component {
         clat: latitude,
         clon: longitude
       }
-    }, () => {console.log(this.state);})
+    })
   }
 
   setCurrentPositionError = (error) => {
