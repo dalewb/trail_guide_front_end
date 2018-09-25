@@ -56,7 +56,7 @@ class App extends Component {
           </Button>
           <Button size="small" color="black">
             <Link to="/posts">
-              View Your Posts
+              View Your Items
             </Link>
           </Button>
           <Button size="small" color="black">
