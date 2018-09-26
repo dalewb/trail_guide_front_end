@@ -41,15 +41,15 @@ That will get the server for the back end up and running.
 To run the frontend, you can install Node.js [here](https://nodejs.org/en/).
 After you install Node.js, clone or fork this repo, navigate into the repo and run:
 
-<br/><br/>
+<br/>
 ```$ npm install```
-<br/><br/>
+<br/>
 
 to install all packages and dependencies.  Then run:
 
-<br/><br/>
+<br/>
 ```$ npm start```
-<br/><br/>
+<br/>
 
 
 ## Tests
