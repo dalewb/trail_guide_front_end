@@ -1,5 +1,4 @@
-
-# Trail Guide
+<h1 align='center'>Trail Guide</h1>
 
 <h1 align='center'>
   <img src='https://github.com/dalewb/trail_guide_front_end/blob/master/images/app_image.png' alt='Trail-Guide' width='700'>
